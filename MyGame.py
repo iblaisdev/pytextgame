@@ -22,7 +22,7 @@ class Util:
         for letter in s:
             print(letter, end='')
             sys.stdout.flush()
-            time.sleep(.05)
+            #time.sleep(.05)
     @staticmethod
     def clear_console():
         if (os.name == 'posix'):
@@ -70,10 +70,28 @@ class State:
         self.combat_options = ['item', 'run']
         self.noncombat_options = ['continue', 'search', 'hide', 'attack']
 
+    def process(self, select: str):
+        if (select == "fail"):
+            pass
+        elif (select == "continue"):
+            pass
+        elif (select == "search"):
+            pass
+        elif (select == "hide"):
+            pass
+        elif (select == "attack"):
+            pass
+        elif (select == "item"):
+            pass
+        elif (select == "run"):
+            pass
+        else:
+            print ("\n\tDEBUG: user selected", select) # delete this later
+        
     # from any user string return: attack, run, item, fail, continue (or QUIT)
     # combat: attack, run, hide, item
     #noncombat: search, continue, item
-    def process_input(self, user_input: str):
+    def parse_input(self, user_input: str):
         match user_input.lower().split():
             case [*_, "hint"]:
                 if (self.state == 'combat'):
@@ -129,6 +147,7 @@ s = State()
 
 # show intro messages
 Util.clear_console()
+#Util.print.slow('What is your name')
 Util.print_slow(a.game_intro)
 Util.print_slow(a.background)
 
@@ -136,25 +155,8 @@ print(a.get_specific_area(0))
 
 # start game loop
 while True:
-    str = "\nWhat would you like to do?\n"
+    str = "\nWhat would you like to do?\n\n"
     user_input = input(str)
-    select = s.process_input(user_input) # 'continue', 'search', 'hide', 'attack', 'item', 'run'
-
-    if (select == "fail"):
-        print("\nThat is not possible right now.")
-    elif (select == "continue"):
-        print(a.get_area())
-    elif (select == "search"):
-        pass
-    elif (select == "hide"):
-        pass
-    elif (select == "attack"):
-        pass
-    elif (select == "item"):
-        pass
-    elif (select == "run"):
-        pass
-    else:
-        print ("\n\tDEBUG: user selected", select) # delete this later
-
-        # do something with select!
+    select = s.parse_input(user_input) # 'continue', 'search', 'hide', 'attack', 'item', 'run'
+    s.process(select)
+   
