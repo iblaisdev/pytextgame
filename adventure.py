@@ -7,8 +7,8 @@ import os
 ##########################################################################
 class Util:
 
-    print_speed_default = .05
-    print_speed = .05
+    print_speed_default = .04
+    print_speed = .04
 
     @staticmethod
     def __init__():
@@ -78,7 +78,7 @@ class State:
             return 'roll_failure'
 
     def process_input(self, prompt_text: str, allowed_actions):
-        allowed_actions.append('restart')
+        allowed_actions.extend(['restart', 'faster', 'slower', 'fastest'])
         while True:
             user_entered_txt = input("\n" + prompt_text + "\n\n>>> ")
             clean_input = self.__sanitize_input(user_entered_txt)
@@ -113,6 +113,12 @@ class State:
                     return "pass"
                 case "hide":
                     return "hide"
+                case "faster":
+                    return "faster"
+                case "fastest":
+                    return "fastest"
+                case "slower":
+                    return "slower"
                 case "restart":
                     return "restart"
                 case "debugobj":
@@ -203,6 +209,19 @@ while True:
             # assign new state id base on that node key, but allow 'restart' always
             if action_key == 'restart':
                 state.stateid = 'id-game-restart'
+                Util.print_speed = Util.print_speed_default
+            elif action_key == 'faster':
+                speed = max(0.00, Util.print_speed - 0.02)
+                print(f"ok, new speed: {speed}")
+                Util.print_speed = speed
+            elif action_key == 'slower':
+                speed = min(Util.print_speed_default + 0.02, Util.print_speed + 0.02)
+                print(f"ok, new speed: {speed}")
+                Util.print_speed = speed
+            elif action_key == 'fastest':
+                speed = 0.00
+                print(f"ok, new speed: {speed}")
+                Util.print_speed = speed
             else:
                 state.stateid = node[action_key]
 
