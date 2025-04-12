@@ -187,7 +187,7 @@ while True:
         if val != None:
             if val == 'id-game-quit':
                 quit()
-            elif val == 'id-forest-start':
+            elif val == 'id-game-goto-restart':
                 Util.clear_console()
             state.stateid = val
 
