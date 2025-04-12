@@ -14,7 +14,10 @@
     },
     "id-game-restart" :
     {
-        "intro_text" : ["wtf"],
+        "goto_node" : "id-game-goto-restart"
+    },
+    "id-game-goto-restart" :
+    {
         "goto_node" : "id-forest-start"
     },
     "id-game-quit" :
