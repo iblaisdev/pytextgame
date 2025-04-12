@@ -1,0 +1,25 @@
+{
+    "id-game-start" :
+    {
+        "intro_text" : ["Welcome my dudes"],
+        "goto_node" : "id-forest-start"
+    },
+    "id-game-end" :
+    {
+        "intro_text" : ["Game over"],
+        "prompt_text": "Would you like to play again?",
+        "parse_input": ["yes", "no"],
+        "yes" : "id-game-restart",
+        "no" : "id-game-quit"
+    },
+    "id-game-restart" :
+    {
+        "intro_text" : ["wtf"],
+        "goto_node" : "id-forest-start"
+    },
+    "id-game-quit" :
+    {
+        "intro_text" : ["Goodbye"],
+        "goto_node" : "id-game-quit"
+    }
+}
