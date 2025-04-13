@@ -182,14 +182,15 @@ class State:
 
     # ask user what class they want to play
     def prompt_for_archetype(self):
-        while True:
-            if self.debug_objects == False:
-                Util.clear_console()
-            Util.print_slow('Welcome to the wonderful world of <worldname>! Before you start your adventure, let me ask you who you are.\n\n', False)
-            Util.print_slow('Are you a Wandering Cavalier, questing across the realm and smiting evil in the search of glory, wealth, fame, or perhaps all of the above? If so, type "Knight”\n\n', False)
-            Util.print_slow('Are you a Traveling Scholar? If so, type “Wizard”\n\n', False)
-            Util.print_slow('Are you a Lone Brigand? If so, type “Rogue”\n\n', False)
+        if self.debug_objects == False:
+            Util.clear_console()
 
+        Util.print_slow('Welcome to the wonderful world of <worldname>! Before you start your adventure, let me ask you who you are.\n\n', False)
+        Util.print_slow('Are you a Wandering Cavalier, questing across the realm and smiting evil in the search of glory, wealth, fame, or perhaps all of the above? If so, type "Knight”\n\n', False)
+        Util.print_slow('Are you a Traveling Scholar? If so, type “Wizard”\n\n', False)
+        Util.print_slow('Are you a Lone Brigand? If so, type “Rogue”\n\n', False)
+
+        while True:
             for arch in self.player.archetypes: # print list of classes
                 print(' *', arch.title()) # print numbered list of node types
             sel = input("\nPlease select which class you would like to play:\n>>> ")
@@ -211,7 +212,7 @@ class State:
                 break;
 
             # not a valid choice, loop again
-            print("\nPlease enter a valid number!")
+            print("\nPlease enter a valid option!")
             time.sleep(1)
 
 ##########################################################################
