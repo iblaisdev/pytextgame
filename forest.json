@@ -9,6 +9,7 @@
         "intro_text" : ["You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
         "roll_dice" : [1, 20, 5],
+        "roll_check" : ["wisdom", "wisdom"],
         "roll_success" : "id-forest-footsteps",
         "roll_failure" : "id-forest-branchbreak"
     },
@@ -59,6 +60,7 @@
     "id-forest-footsteps-hide-goblin-talk" :
     {
         "roll_dice" : [1, 20, 10],
+        "roll_check" : ["charisma", "charisma", "charisma"],
         "roll_success" : "id-forest-footsteps-hide-goblin-talk-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-talk-fail"
     },
@@ -68,8 +70,9 @@
                         "You come out into the path behind them, and say you are a traveling merchant and friend to goblins.",
                         "You trade them some small objects and knick-knacks, claiming that they are potent charms and talismans.",
                         "In return, they give you safe passage through the forest.",
-                        "They also give you the location of a ‘stick lady,’ but they don’t tell you why you would want to visit such a character.",
+                        "They also give you a map with the location of a ‘stick lady,’ but they don’t tell you why you would want to visit such a character.",
                         "Soon after they leave. You find yourself alone again in the quiet woods, and continue down the trail."],
+        "item_pickup" : ["stick-lady-map"],
         "goto_node" : "id-forest-end-success"
     },
     "id-forest-footsteps-hide-goblin-talk-fail" :
@@ -82,12 +85,14 @@
     "id-forest-footsteps-hide-goblin-ambush" :
     {
         "roll_dice" : [1, 20, 10],
+        "roll_check" : ["dexterity", "dexterity"],
         "roll_success" : "id-forest-footsteps-hide-goblin-ambush-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-ambush-fail"
     },
     "id-forest-branchbreak-goblin-talk" :
     {
         "roll_dice" : [1, 20, 13],
+        "roll_check" : ["charisma", "charisma", "charisma", "charisma"],
         "roll_success" : "id-forest-branchbreak-goblin-talk-success",
         "roll_failure" : "id-forest-branchbreak-goblin-talk-fail"
     },
@@ -100,6 +105,7 @@
                         "They also give you the location of a ‘stick lady,’ but they don’t tell you why you would want to visit such a character.",
                         "",
                         "Soon after they leave. You find yourself alone again in the quiet woods, and continue down the trail."],
+        "item_pickup" : ["stick-lady-map"],
         "goto_node" : "id-forest-end-success"
     },
     "id-forest-branchbreak-goblin-talk-fail" :
@@ -119,6 +125,7 @@
     "id-forest-branchbreak-goblin-fight" :
     {
         "roll_dice" : [1, 20, 10],
+        "roll_check" : ["constitution","strength","intelligence","wisdom","dexterity","constitution","strength","intelligence","wisdom","dexterity"],
         "roll_success" : "id-forest-branchbreak-goblin-fight-success",
         "roll_failure" : "id-forest-branchbreak-goblin-fight-fail"
     },
@@ -132,9 +139,7 @@
                         "The boss, reeling from his head wound, screams in pain and begs for mercy. He does not receive any from you.",
                         "",
                         "You find yourself alone again in the quiet woods, and continue down the trail."],
-        "roll_dice" : [1, 20, 10],
-        "roll_success" : "id-forest-end-success",
-        "roll_failure" : "id-forest-branchbreak-goblin-fight-fail"
+        "goto_node" : "id-forest-end-success"
     },
     "id-forest-branchbreak-goblin-fight-fail" :
     {
@@ -142,12 +147,6 @@
                         "You attempt to bash your head into the boss goblin, but he predicts your movement, dodging at the last moment.",
                         "The goblins, enraged, ready their spears and attack. You are dead."],
         "goto_node" : "id-forest-end-fail"
-    },
-    "id-forest-branchbreak-goblin-ambush" :
-    {
-        "roll_dice" : [1, 20, 10],
-        "roll_success" : "id-forest-branchbreak-goblin-ambush-success",
-        "roll_failure" : "id-forest-branchbreak-goblin-ambush-fail"
     },
     "id-forest-footsteps-hide-goblin-ambush-success" :
     {
@@ -170,5 +169,11 @@
     "id-forest-end-fail" :
     {
         "goto_node" : "id-game-end"
+    },
+    "id-forest-example-inventory-check" :
+    {
+        "inventory_check" : ["stick-lady-map"],
+        "check_success" : "id-forest-blah-success",
+        "check_failure" : "id-forest-blah-fail"
     }
 }
