@@ -42,7 +42,7 @@ class Player:
         self.archetypes = ['knight', 'wizard', 'rogue']
         self.archetype = None;
 
-    def get_roll_modifier(self, roll_stat_list):
+    def get_stat_roll_modifier(self, roll_stat_list):
         mod = 0
         for stat in roll_stat_list: #e.g. ["constitution","strength"]
             if stat == 'constitution' and self.archetype == 'knight':
@@ -67,7 +67,7 @@ class State:
         self.debug_objects = False
         self.debug_time = False
         self.player = Player()
-        self.inventory = {}
+        self.inventory = [] #['example-item']
 
     def set_debug_objects(self, state: bool):
         print(f"\nDebug mode setting: {state}\n")
@@ -90,17 +90,37 @@ class State:
         if self.debug_objects == True:
             print(self.gamedata) #dump full game dictionary
 
-    def roll_dice(self, roll_data_list, roll_stat_list):
+    def get_item_roll_modifier(self, roll_item_list_pairs): # e.g., [["good-item", 2], ["bad-item", -4]]
+        mod = 0
+        for lst in roll_item_list_pairs:
+            item = lst[0]
+            val = lst[1]
+            if item in self.inventory:
+                mod += val
+        return mod
+
+    def roll_dice(self, roll_data_list, roll_stat_list, roll_item_list_pairs):
+
         minval = roll_data_list[0] # e.g., 1
         maxval = roll_data_list[1] # e.g., 20
         chkval = roll_data_list[2] # e.g., 13
         result = random.randint(minval, maxval)
-        rollmod = self.player.get_roll_modifier(roll_stat_list)
-        if result + rollmod > chkval:
-            Util.print_slow(f"\nYou rolled a {result} (+{rollmod}), which succeeds.\n\n", False)
+        statmod = self.player.get_stat_roll_modifier(roll_stat_list)
+        itemmod = self.get_item_roll_modifier(roll_item_list_pairs)
+        result += statmod + itemmod
+        sign = '+' if itemmod >= 0 else '-'
+        itemmod = abs(itemmod)
+        if result > chkval:
+            if (not roll_item_list_pairs):
+                Util.print_slow(f"\nYou rolled {result} (+{statmod} class), which succeeds.\n\n", False)
+            else:
+                Util.print_slow(f"\nYou rolled {result} (+{statmod} class, {sign}{itemmod} items), which succeeds.\n\n", False)
             return 'roll_success'
         else:
-            Util.print_slow(f"\nYou rolled a {result} (+{rollmod}), which fails.\n\n", False)
+            if (not roll_item_list_pairs):
+                Util.print_slow(f"\nYou rolled {result} (+{statmod},+{itemmod}), which fails.\n\n", False)
+            else:
+                Util.print_slow(f"\nYou rolled {result} (+{statmod} class, {sign}{itemmod} items), which fails.\n\n", False)
             return 'roll_failure'
 
     def process_input(self, prompt_text: str, allowed_actions):
@@ -165,18 +185,21 @@ class State:
         while True:
             if self.debug_objects == False:
                 Util.clear_console()
-            print("Welcome to <game-name-here>\n")
+            Util.print_slow('Welcome to the wonderful world of <worldname>! Before you start your adventure, let me ask you who you are.\n\n', False)
+            Util.print_slow('Are you a Wandering Cavalier, questing across the realm and smiting evil in the search of glory, wealth, fame, or perhaps all of the above? If so, type "Knight”\n\n', False)
+            Util.print_slow('Are you a Traveling Scholar? If so, type “Wizard”\n\n', False)
+            Util.print_slow('Are you a Lone Brigand? If so, type “Rogue”\n\n', False)
 
-            for number, arch in enumerate(self.player.archetypes): # print list of classes
-                print(number + 1, arch) # print numbered list of node types
+            for arch in self.player.archetypes: # print list of classes
+                print(' *', arch.title()) # print numbered list of node types
             sel = input("\nPlease select which class you would like to play:\n>>> ")
-            if sel == '1':
+            if sel.lower() == 'knight':
                 self.player.archetype = 'knight'
                 Util.print_slow("\nYou have chosen Knight, a strong choice!\n\n", False)
-            elif sel == '2':
+            elif sel.lower() == 'wizard':
                 self.player.archetype = 'wizard'
                 Util.print_slow("\nYou have chosen Wizard, a wise choice!\n\n",  False)
-            elif sel == '3':
+            elif sel.lower() == 'rogue':
                 self.player.archetype = 'rogue'
                 Util.print_slow("\nYou have chosen Rogue, a dexterous choice!\n\n", False)
 
@@ -210,6 +233,12 @@ if len(sys.argv) > 1:
             state.set_debug_objects(True)
         elif sys.argv[2] == "debugtime":
             state.set_debug_time(True)
+        elif sys.argv[2] == "knight" or sys.argv[2] == "wizard" or sys.argv[2] == "rogue":
+            state.player.archetype = sys.argv[2]
+            print(state.player.archetype)
+    if len(sys.argv) > 3:
+        state.player.archetype = sys.argv[3]
+        print(state.player.archetype)
 
 # load game data dictionaries
 state.load_game_data()
@@ -249,6 +278,24 @@ while True:
             for entry in val:
                 Util.print_slow(entry, True)
 
+        # check to see if we picked up an item in this node
+        val = node.get('item_pickup', None) # e.g. ["stick-lady-map", "potion-of-stomping"]
+        if val != None:
+            for item in val:
+                state.inventory.append(item)
+
+        # check to see if this is an inventory_check node
+        val = node.get('inventory_check', None) # e.g. ["stick-lady-map", "potion-of-stomping"]
+        if val != None:
+            if state.debug_objects == True:
+                print(f" * inventory: {state.inventory}")
+                print(f" * node item list: {val}")
+            if (set(val).issubset(set(state.inventory))):
+                val = node['check_success'] # e.g., "id-forest-blah-success",
+            else:
+                val = node['check_failure'] # e.g., "id-forest-blah-failure",
+            state.stateid = val
+
         # see if this is a goto node
         val = node.get('goto_node', None) # val is either None, string name for next state
         if val != None:
@@ -256,6 +303,7 @@ while True:
                 quit()
             elif val == 'id-game-goto-restart':
                 state.player.archetype = None
+                state.inventory.clear()
                 Util.clear_console()
             state.stateid = val
 
@@ -297,9 +345,14 @@ while True:
         # see if we need to roll any dice
         roll_data_list = node.get('roll_dice', None) # e.g., [1, 20, 10]
         if roll_data_list != None:
+
             # get the stat list for this roll
-            roll_stat_list = node.get('roll_check', []) # e.g., ["constitution","strength"]
-            roll_result = state.roll_dice(roll_data_list, roll_stat_list) # e.g., roll_success
+            roll_stat_list = node.get('roll_stats', []) # e.g., ["constitution","strength"]
+
+            # get the item list
+            roll_item_list_pairs = node.get('roll_items', []) # e.g., [["good-item", 2], ["bad-item", -4]]
+
+            roll_result = state.roll_dice(roll_data_list, roll_stat_list, roll_item_list_pairs) # e.g., roll_success
 
             # assign new state id base on that roll result
             state.stateid = node[roll_result]
