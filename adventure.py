@@ -37,12 +37,37 @@ class Util:
         pass
 
 ##########################################################################
+class Player:
+    def __init__(self):
+        self.archetypes = ['knight', 'wizard', 'rogue']
+        self.archetype = None;
+
+    def get_roll_modifier(self, roll_stat_list):
+        mod = 0
+        for stat in roll_stat_list: #e.g. ["constitution","strength"]
+            if stat == 'constitution' and self.archetype == 'knight':
+                mod += 1
+            if stat == 'strength' and self.archetype == 'knight':
+                mod += 1
+            if stat == 'intelligence' and self.archetype == 'wizard':
+                mod += 1
+            if stat == 'wisdom' and self.archetype == 'wizard':
+                mod += 1
+            if stat == 'dexterity' and self.archetype == 'rogue':
+                mod += 1
+            if stat == 'charisma' and self.archetype == 'rogue':
+                mod += 1
+        return mod
+
+##########################################################################
 class State:
     def __init__(self):
         self.stateid = 'id-game-start'
         self.gamedata = {}
         self.debug_objects = False
         self.debug_time = False
+        self.player = Player()
+        self.inventory = {}
 
     def set_debug_objects(self, state: bool):
         print(f"\nDebug mode setting: {state}\n")
@@ -65,16 +90,17 @@ class State:
         if self.debug_objects == True:
             print(self.gamedata) #dump full game dictionary
 
-    def roll_dice(self, roll_data_list):
+    def roll_dice(self, roll_data_list, roll_stat_list):
         minval = roll_data_list[0] # e.g., 1
         maxval = roll_data_list[1] # e.g., 20
         chkval = roll_data_list[2] # e.g., 13
         result = random.randint(minval, maxval)
-        if result > chkval:
-            Util.print_slow(f"\nYou rolled a {result}, which succeeds.\n\n", False)
+        rollmod = self.player.get_roll_modifier(roll_stat_list)
+        if result + rollmod > chkval:
+            Util.print_slow(f"\nYou rolled a {result} (+{rollmod}), which succeeds.\n\n", False)
             return 'roll_success'
         else:
-            Util.print_slow(f"\nYou rolled a {result}, which fails.\n\n", False)
+            Util.print_slow(f"\nYou rolled a {result} (+{rollmod}), which fails.\n\n", False)
             return 'roll_failure'
 
     def process_input(self, prompt_text: str, allowed_actions):
@@ -134,6 +160,37 @@ class State:
                 case _:
                     return "fail"
 
+    # ask user what class they want to play
+    def prompt_for_archetype(self):
+        while True:
+            if self.debug_objects == False:
+                Util.clear_console()
+            print("Welcome to <game-name-here>\n")
+
+            for number, arch in enumerate(self.player.archetypes): # print list of classes
+                print(number + 1, arch) # print numbered list of node types
+            sel = input("\nPlease select which class you would like to play:\n>>> ")
+            if sel == '1':
+                self.player.archetype = 'knight'
+                Util.print_slow("\nYou have chosen Knight, a strong choice!\n\n", False)
+            elif sel == '2':
+                self.player.archetype = 'wizard'
+                Util.print_slow("\nYou have chosen Wizard, a wise choice!\n\n",  False)
+            elif sel == '3':
+                self.player.archetype = 'rogue'
+                Util.print_slow("\nYou have chosen Rogue, a dexterous choice!\n\n", False)
+
+            # see if we have a valid choice, break out of while loop if so
+            if self.player.archetype != None:
+                time.sleep(1)
+                if self.debug_objects == False:
+                    Util.clear_console()
+                break;
+
+            # not a valid choice, loop again
+            print("\nPlease enter a valid number!")
+            time.sleep(1)
+
 ##########################################################################
 ##########################################################################
 ##########################################################################
@@ -163,6 +220,10 @@ if state.debug_objects != True:
 
 # start game loop
 while True:
+
+    # see if we need to choose the player type
+    if state.player.archetype == None:
+        state.prompt_for_archetype()
 
     # get current game state - node is a sub-dictionary
     node = state.gamedata.get(state.stateid, None)
@@ -194,6 +255,7 @@ while True:
             if val == 'id-game-quit':
                 quit()
             elif val == 'id-game-goto-restart':
+                state.player.archetype = None
                 Util.clear_console()
             state.stateid = val
 
@@ -235,7 +297,9 @@ while True:
         # see if we need to roll any dice
         roll_data_list = node.get('roll_dice', None) # e.g., [1, 20, 10]
         if roll_data_list != None:
-            roll_result = state.roll_dice(roll_data_list) # e.g., roll_success
+            # get the stat list for this roll
+            roll_stat_list = node.get('roll_check', []) # e.g., ["constitution","strength"]
+            roll_result = state.roll_dice(roll_data_list, roll_stat_list) # e.g., roll_success
 
             # assign new state id base on that roll result
             state.stateid = node[roll_result]
