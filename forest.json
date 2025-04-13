@@ -9,7 +9,8 @@
         "intro_text" : ["You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
         "roll_dice" : [1, 20, 5],
-        "roll_check" : ["wisdom", "wisdom"],
+        "roll_stats" : ["wisdom", "wisdom"],
+        "roll_items" : [["example-item", -2]],
         "roll_success" : "id-forest-footsteps",
         "roll_failure" : "id-forest-branchbreak"
     },
@@ -60,7 +61,7 @@
     "id-forest-footsteps-hide-goblin-talk" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_check" : ["charisma", "charisma", "charisma"],
+        "roll_stats" : ["charisma", "charisma", "charisma"],
         "roll_success" : "id-forest-footsteps-hide-goblin-talk-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-talk-fail"
     },
@@ -80,19 +81,19 @@
         "intro_text" : ["You reveal yourself from the brush, startling the goblins.",
                         "You tell them of your great deeds and many quests that you have completed in the name of good.",
                         "Being goblins, they don’t care for your great deeds, fictional or not. They kill you."],
-        "goto_node" : "id-forest-end-success"
+        "goto_node" : "id-forest-end-fail"
     },
     "id-forest-footsteps-hide-goblin-ambush" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_check" : ["dexterity", "dexterity"],
+        "roll_stats" : ["dexterity", "dexterity"],
         "roll_success" : "id-forest-footsteps-hide-goblin-ambush-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-ambush-fail"
     },
     "id-forest-branchbreak-goblin-talk" :
     {
         "roll_dice" : [1, 20, 13],
-        "roll_check" : ["charisma", "charisma", "charisma", "charisma"],
+        "roll_stats" : ["charisma", "charisma", "charisma", "charisma"],
         "roll_success" : "id-forest-branchbreak-goblin-talk-success",
         "roll_failure" : "id-forest-branchbreak-goblin-talk-fail"
     },
@@ -125,7 +126,7 @@
     "id-forest-branchbreak-goblin-fight" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_check" : ["constitution","strength","intelligence","wisdom","dexterity","constitution","strength","intelligence","wisdom","dexterity"],
+        "roll_stats" : ["constitution","strength","intelligence","wisdom","dexterity","constitution","strength","intelligence","wisdom","dexterity"],
         "roll_success" : "id-forest-branchbreak-goblin-fight-success",
         "roll_failure" : "id-forest-branchbreak-goblin-fight-fail"
     },
