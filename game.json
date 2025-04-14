@@ -1,7 +1,7 @@
 {
     "id-game-start" :
     {
-        "goto_node" : "id-town-start"
+        "goto_node" : "id-forest-start"
     },
     "id-game-end" :
     {
