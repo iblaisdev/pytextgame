@@ -41,6 +41,13 @@
 		"roll_success" : "id-town-choice-steel-success",
         "roll_failure" : "id-town-choice-steel-continue"
 	},
+    "id-town-return" :
+    {
+		"intro_text" : ["You find yourself back in the town"],
+        "inventory_check" : ["supplies"],
+        "check_success" : "id-town-choice-steel-continue",
+        "check_failure" : "id-town-choice-steel-success"
+    },
 	"id-town-choice-steel-success" :
     {
 		"intro_text" : ["You eye some useful supplies near a small forge behind the stable. The blacksmith could be convinced to give up some of their supplies. Do you talk to the smith?"],
@@ -82,10 +89,10 @@
 						"Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Witch Hut\nThe Dragon's Den",
 		"parse_input": ["the crypt","the goblin den","the witch hut","the dragons den"],
-		"the crypt" : "id-start-crypt",
-		"the goblin den" : "id-start-gobden",
-		"the witch hut" : "id-start-witch",
-		"the dragons den" : "id-start-dragon"	
+		"the crypt" : "id-check-crypt-item",
+		"the goblin den" : "id-check-gobden-item",
+		"the witch hut" : "id-check-witch-item",
+		"the dragons den" : "id-leave-for-dragon"
 	},
 	"id-town-choice-nomap" :
     {
@@ -93,8 +100,48 @@
 						"Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Dragon's Den",
 		"parse_input": ["the crypt","the goblin den","the dragons den"],
-		"the crypt" : "id-start-crypt",
-		"the goblin den" : "id-start-gobden",
-		"the dragons den" : "id-start-dragon"
-	}
+		"the crypt" : "id-check-crypt-item",
+		"the goblin den" : "id-check-gobden-item",
+		"the dragons den" : "id-leave-for-dragon"
+	},
+	"id-check-crypt-item" :
+    {
+		"inventory_check" : ["magic-sword"],
+        "check_success" : "id-check-area-had-item",
+        "check_failure" : "id-leave-for-crypt"
+    },
+	"id-check-gobden-item" :
+    {
+		"inventory_check" : ["goblin-help"],
+        "check_success" : "id-check-area-had-item",
+        "check_failure" : "id-leave-for-gobden"
+    },
+	"id-check-witch-item" :
+    {
+		"inventory_check" : ["witch-potion"],
+        "check_success" : "id-check-area-had-item",
+        "check_failure" : "id-leave-for-witch"
+    },
+	"id-check-area-had-item" :
+    {
+		"intro_text" : ["You have already completed that area. There is little point in you returning."],
+        "goto_node" : "id-town-choice-steel-continue"
+    },
+	"id-leave-for-crypt" :
+    {
+		"goto_node" : "id-crypt-start"
+    },
+	"id-leave-for-gobden" :
+    {
+		"goto_node" : "id-gobden-start"
+    },
+	"id-leave-for-witch" :
+    {
+		"goto_node" : "id-witch-start"
+    },
+	"id-leave-for-dragon" :
+    {
+		"intro_text" : ["You feel you are prepared, and head off in search of a dragon..."],
+		"goto_node" : "id-dragon-start"
+    }
 }
