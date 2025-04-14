@@ -16,6 +16,9 @@ class Util:
 
     @staticmethod
     def print_slow(s: str, addquotes: bool):
+        if s == "":
+            print()
+            return
         if addquotes == True:
             print("\"", end='')
         for letter in s:
