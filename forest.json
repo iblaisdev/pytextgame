@@ -8,8 +8,8 @@
     {
         "intro_text" : ["You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
-        "roll_dice" : [1, 20, 5],
-        "roll_stats" : ["wisdom", "wisdom"],
+        "roll_dice" : [1, 20, 10],
+        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
         "roll_items" : [["example-item", -2]],
         "roll_success" : "id-forest-footsteps",
         "roll_failure" : "id-forest-branchbreak"
@@ -45,7 +45,7 @@
         "intro_text" : ["You dash into the brush and find yourself peering at the approaching group from behind a shaded tree.",
                         "A group of seven short, green-skinned humanoid figures sculk past your tree. Goblins, no doubt.",
                         "They don’t see you, and you would have the upper hand in combat if you attack them now.",
-                        "But it would still be a tough fight. Maybe it’s best just to let them pass . . ."],
+                        "But it would still be a tough fight. Maybe it’s best just to let them pass..."],
         "prompt_text": "(Pass, Talk, or Ambush)",
         "parse_input": ["pass", "talk", "ambush"],
         "pass" : "id-forest-footsteps-hide-goblin-pass",
@@ -61,7 +61,7 @@
     "id-forest-footsteps-hide-goblin-talk" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["charisma", "charisma", "charisma"],
+        "roll_stats" : ["charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom"],
         "roll_success" : "id-forest-footsteps-hide-goblin-talk-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-talk-fail"
     },
@@ -73,7 +73,7 @@
                         "In return, they give you safe passage through the forest.",
                         "They also give you a map with the location of a ‘stick lady,’ but they don’t tell you why you would want to visit such a character.",
                         "Soon after they leave. You find yourself alone again in the quiet woods, and continue down the trail."],
-        "item_pickup" : ["stick-lady-map"],
+        "item_pickup" : ["stick-lady-map", "goblin-friend"],
         "goto_node" : "id-forest-end-success"
     },
     "id-forest-footsteps-hide-goblin-talk-fail" :
@@ -86,14 +86,14 @@
     "id-forest-footsteps-hide-goblin-ambush" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["dexterity", "dexterity"],
+        "roll_stats" : ["dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "strength", "strength", "strength", "strength", "strength", "strength", "strength", "strength", "strength"],
         "roll_success" : "id-forest-footsteps-hide-goblin-ambush-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-ambush-fail"
     },
     "id-forest-branchbreak-goblin-talk" :
     {
-        "roll_dice" : [1, 20, 13],
-        "roll_stats" : ["charisma", "charisma", "charisma", "charisma"],
+        "roll_dice" : [1, 20, 15],
+        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma"],
         "roll_success" : "id-forest-branchbreak-goblin-talk-success",
         "roll_failure" : "id-forest-branchbreak-goblin-talk-fail"
     },
@@ -106,7 +106,7 @@
                         "They also give you the location of a ‘stick lady,’ but they don’t tell you why you would want to visit such a character.",
                         "",
                         "Soon after they leave. You find yourself alone again in the quiet woods, and continue down the trail."],
-        "item_pickup" : ["stick-lady-map"],
+        "item_pickup" : ["stick-lady-map", "goblin-friend"],
         "goto_node" : "id-forest-end-success"
     },
     "id-forest-branchbreak-goblin-talk-fail" :
@@ -126,14 +126,14 @@
     "id-forest-branchbreak-goblin-fight" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["constitution","strength","intelligence","wisdom","dexterity","constitution","strength","intelligence","wisdom","dexterity"],
+        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution"],
         "roll_success" : "id-forest-branchbreak-goblin-fight-success",
         "roll_failure" : "id-forest-branchbreak-goblin-fight-fail"
     },
     "id-forest-branchbreak-goblin-fight-success" :
     {
         "intro_text" : ["The largest goblin looks up to you, snarling in its barbaric language, drool dripping from its sharp, uneven teeth.",
-                        "You bash your forehead into the boss goblin’s noggin before severing it from the rest of its body.",
+                        "You bash your forehead into the boss goblin’s noggin before shoving him into the dirt.",
                         "Next are the two goblins behind you, which are dealt with easily in their surprise. You carve a path through the group.",
                         "With the extra distance between you and the group, you kill the goblins as they reach you, one by one.",
                         "In the end, you are coated in goblin blood with six dead around you.",
@@ -170,11 +170,5 @@
     "id-forest-end-fail" :
     {
         "goto_node" : "id-game-end"
-    },
-    "id-forest-example-inventory-check" :
-    {
-        "inventory_check" : ["stick-lady-map"],
-        "check_success" : "id-forest-blah-success",
-        "check_failure" : "id-forest-blah-fail"
     }
 }
