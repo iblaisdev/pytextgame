@@ -165,7 +165,7 @@
     },
     "id-forest-end-success" :
     {
-        "goto_node" : "id-game-continue-replace-this-with-next-area"
+        "goto_node" : "id-town-start"
     },
     "id-forest-end-fail" :
     {

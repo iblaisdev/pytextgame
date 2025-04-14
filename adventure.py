@@ -159,6 +159,16 @@ class State:
                     return "pass"
                 case "hide":
                     return "hide"
+                case "steel thyself":
+                    return "steel thyself"
+                case "the crypt":
+                    return "the crypt"                    
+                case "the goblin den":
+                    return "the goblin den"                    
+                case "the witch hut":
+                    return "the witch hut"
+                case "the dragons den":
+                    return "the dragons den"
                 case "faster":
                     return "faster"
                 case "fastest":
