@@ -80,7 +80,7 @@
 						"It’s not far from the town, but you have a feeling that this ‘stick lady’ is a witch, and not a harmless one.",
 						"",
 						"Where shall you travel?"],
-		"prompt_text": "The Crypt\nThe Goblin Den\nThe Witch Hut\nThe Dragons Den",
+		"prompt_text": "The Crypt\nThe Goblin Den\nThe Witch Hut\nThe Dragon's Den",
 		"parse_input": ["the crypt","the goblin den","the witch hut","the dragons den"],
 		"the crypt" : "id-start-crypt",
 		"the goblin den" : "id-start-gobden",
@@ -89,8 +89,9 @@
 	},
 	"id-town-choice-nomap" :
     {
-		"intro_text" : ["Where shall you travel?"],
-		"prompt_text": "The Crypt\nThe Goblin Den\nThe Dragons Den",
+		"intro_text" : ["",
+						"Where shall you travel?"],
+		"prompt_text": "The Crypt\nThe Goblin Den\nThe Dragon's Den",
 		"parse_input": ["the crypt","the goblin den","the dragons den"],
 		"the crypt" : "id-start-crypt",
 		"the goblin den" : "id-start-gobden",
