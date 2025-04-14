@@ -87,6 +87,8 @@ class State:
             self.gamedata = json.load(json_file)
         with open('forest.json') as json_file:
             self.gamedata.update(json.load(json_file))
+        with open('town.json') as json_file:
+            self.gamedata.update(json.load(json_file))
         if self.debug_objects == True:
             print(self.gamedata) #dump full game dictionary
 
@@ -111,14 +113,14 @@ class State:
         sign = '+' if itemmod >= 0 else '-'
         itemmod = abs(itemmod)
         if result > chkval:
-            if (not roll_item_list_pairs):
+            if not roll_item_list_pairs:
                 Util.print_slow(f"\nYou rolled {result} (+{statmod} class), which succeeds.\n\n", False)
             else:
                 Util.print_slow(f"\nYou rolled {result} (+{statmod} class, {sign}{itemmod} items), which succeeds.\n\n", False)
             return 'roll_success'
         else:
-            if (not roll_item_list_pairs):
-                Util.print_slow(f"\nYou rolled {result} (+{statmod},+{itemmod}), which fails.\n\n", False)
+            if not roll_item_list_pairs:
+                Util.print_slow(f"\nYou rolled {result} (+{statmod} class), which fails.\n\n", False)
             else:
                 Util.print_slow(f"\nYou rolled {result} (+{statmod} class, {sign}{itemmod} items), which fails.\n\n", False)
             return 'roll_failure'
@@ -137,58 +139,51 @@ class State:
 
     # parse user input to allowed values
     def __sanitize_input(self, user_input: str):
-        words = user_input.lower().split()
+        txt = user_input.lower()
         if self.debug_objects == True:
-            print(f"split: {words}")
-        result = "fail"
-        for word in words:
-            match word:
-                case "talk":
-                    return "talk"
-                case "fight":
-                    return "fight"
-                case "run":
-                    return "run"
-                case "ambush":
-                    return "ambush"
-                case "yes":
-                    return "yes"
-                case "no":
-                    return "no"
-                case "pass":
-                    return "pass"
-                case "hide":
-                    return "hide"
-                case "steel thyself":
-                    return "steel thyself"
-                case "the crypt":
-                    return "the crypt"                    
-                case "the goblin den":
-                    return "the goblin den"                    
-                case "the witch hut":
-                    return "the witch hut"
-                case "the dragons den":
-                    return "the dragons den"
-                case "faster":
-                    return "faster"
-                case "fastest":
-                    return "fastest"
-                case "slower":
-                    return "slower"
-                case "restart":
-                    return "restart"
-                case "debugobj":
-                    self.set_debug_objects(True)
-                    return "fail"
-                case "debugtime":
-                    self.set_debug_time(True)
-                    return "fail"
-                case "ndebug":
-                    self.set_debug_objects(False)
-                    self.set_debug_time(False)
-                    return "fail"
-                case _:
-                    return "fail"
+            print(f"txt: {txt}")
+        if "talk" in txt:
+            return "talk"
+        if "fight" in txt:
+            return "fight"
+        if "run" in txt:
+            return "run"
+        if "ambush" in txt:
+            return "ambush"
+        if "yes" in txt:
+            return "yes"
+        if "no" in txt:
+            return "no"
+        if "pass" in txt:
+            return "pass"
+        if "hide" in txt:
+            return "hide"
+        if "steel" in txt:
+            return "steel thyself"
+        if "crypt" in txt:
+            return "the crypt"
+        if "goblin" in txt:
+            return "the goblin den"
+        if "witch" in txt:
+            return "the witch hut"
+        if "dragons" in txt:
+            return "the dragons den"
+        if "faster" in txt:
+            return "faster"
+        if "fastest" in txt:
+            return "fastest"
+        if "slower" in txt:
+            return "slower"
+        if "restart" in txt:
+            return "restart"
+        if "debugobj" in txt:
+            self.set_debug_objects(True)
+        if "debugtime" in txt:
+            self.set_debug_time(True)
+        if "ndebug" in txt:
+            self.set_debug_objects(False)
+            self.set_debug_time(False)
+        return "fail"
 
     # ask user what class they want to play
     def prompt_for_archetype(self):
