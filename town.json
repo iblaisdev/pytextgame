@@ -81,7 +81,7 @@
 						"",
 						"Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Witch Hut\nThe Dragons Den",
-		"parse_input": ["The Crypt","The Goblin Den","The Witch Hut","The Dragons Den"],
+		"parse_input": ["the crypt","the goblin den","the witch hut","the dragons den"],
 		"the crypt" : "id-start-crypt",
 		"the goblin den" : "id-start-gobden",
 		"the witch hut" : "id-start-witch",
@@ -91,7 +91,7 @@
     {
 		"intro_text" : ["Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Dragons Den",
-		"parse_input": ["The Crypt","The Goblin Den","The Dragons Den"],
+		"parse_input": ["the crypt","the goblin den","the dragons den"],
 		"the crypt" : "id-start-crypt",
 		"the goblin den" : "id-start-gobden",
 		"the dragons den" : "id-start-dragon"
