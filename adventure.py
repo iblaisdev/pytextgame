@@ -92,6 +92,8 @@ class State:
             self.gamedata.update(json.load(json_file))
         with open('town.json') as json_file:
             self.gamedata.update(json.load(json_file))
+        with open('gobden.json') as json_file:
+            self.gamedata.update(json.load(json_file))
         if self.debug_objects == True:
             print(self.gamedata) #dump full game dictionary
 
@@ -157,6 +159,10 @@ class State:
             return "yes"
         if "no" in txt:
             return "no"
+        if "enter" in txt:
+            return "enter"
+        if "leave" in txt:
+            return "leave"
         if "pass" in txt:
             return "pass"
         if "hide" in txt:
