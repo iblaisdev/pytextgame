@@ -166,7 +166,7 @@ class State:
             return "the goblin den"
         if "witch" in txt:
             return "the witch hut"
-        if "dragons" in txt:
+        if "dragon" in txt:
             return "the dragons den"
         if "faster" in txt:
             return "faster"
