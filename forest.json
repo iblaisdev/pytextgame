@@ -1,12 +1,12 @@
 {
     "id-forest-start" :
     {
-        "intro_text" : ["You are in the woods at night. You are traveling to a town that has not been heard from for some time."],
+        "intro_text" : ["","You are in the woods at night. You are traveling to a town that has not been heard from for some time."],
         "goto_node" : "id-forest-at-night"
     },
     "id-forest-at-night" :
     {
-        "intro_text" : ["You feel your senses tingle."],
+        "intro_text" : ["","You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
         "roll_dice" : [1, 20, 10],
         "roll_stats" : [["wisdom", 10], ["dexterity", 5]],
