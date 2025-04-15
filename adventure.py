@@ -7,8 +7,8 @@ import os
 ##########################################################################
 class Util:
 
-    print_speed_default = .04
-    print_speed = .04
+    print_speed_default = .03
+    print_speed = .03
 
     @staticmethod
     def __init__():
@@ -25,7 +25,7 @@ class Util:
             print(letter, end='')
             sys.stdout.flush()
             if Util.print_speed > 0.0:
-                time.sleep(Util.print_speed)
+                    time.sleep(Util.print_speed)
         if addquotes == True:
             print("\"")
 
@@ -45,21 +45,21 @@ class Player:
         self.archetypes = ['knight', 'wizard', 'rogue']
         self.archetype = None;
 
-    def get_stat_roll_modifier(self, roll_stat_list):
+    def get_stat_roll_modifier(self, roll_stat_list_pairs):
         mod = 0
-        for stat in roll_stat_list: #e.g. ["constitution","strength"]
-            if stat == 'constitution' and self.archetype == 'knight':
-                mod += 1
-            if stat == 'strength' and self.archetype == 'knight':
-                mod += 1
-            if stat == 'intelligence' and self.archetype == 'wizard':
-                mod += 1
-            if stat == 'wisdom' and self.archetype == 'wizard':
-                mod += 1
-            if stat == 'dexterity' and self.archetype == 'rogue':
-                mod += 1
-            if stat == 'charisma' and self.archetype == 'rogue':
-                mod += 1
+        for stat_pair in roll_stat_list_pairs: #e.g. ["constitution","strength"]
+            if stat_pair[0] == 'constitution' and self.archetype == 'knight':
+                mod += stat_pair[1]
+            if stat_pair[0] == 'strength' and self.archetype == 'knight':
+                mod += stat_pair[1]
+            if stat_pair[0] == 'intelligence' and self.archetype == 'wizard':
+                mod += stat_pair[1]
+            if stat_pair[0] == 'wisdom' and self.archetype == 'wizard':
+                mod += stat_pair[1]
+            if stat_pair[0] == 'dexterity' and self.archetype == 'rogue':
+                mod += stat_pair[1]
+            if stat_pair[0] == 'charisma' and self.archetype == 'rogue':
+                mod += stat_pair[1]
         return mod
 
 ##########################################################################
@@ -108,13 +108,13 @@ class State:
                 mod += val
         return mod
 
-    def roll_dice(self, roll_data_list, roll_stat_list, roll_item_list_pairs):
+    def roll_dice(self, roll_data_list, roll_stat_list_pairs, roll_item_list_pairs):
 
         minval = roll_data_list[0] # e.g., 1
         maxval = roll_data_list[1] # e.g., 20
         chkval = roll_data_list[2] # e.g., 13
         result = random.randint(minval, maxval)
-        statmod = self.player.get_stat_roll_modifier(roll_stat_list)
+        statmod = self.player.get_stat_roll_modifier(roll_stat_list_pairs)
         itemmod = self.get_item_roll_modifier(roll_item_list_pairs)
         result += statmod + itemmod
         sign = '+' if itemmod >= 0 else '-'
@@ -132,8 +132,7 @@ class State:
                 Util.print_slow(f"\nYou rolled {result} (+{statmod} class, {sign}{itemmod} items), which fails.\n\n", False)
             return 'roll_failure'
 
-    def process_input(self, prompt_text: str, allowed_actions):
-        allowed_actions.extend(['restart', 'faster', 'slower', 'fastest'])
+    def process_input(self, prompt_text: str, allowed_actions, loop_until_true: bool):
         while True:
             user_entered_txt = input("\n" + prompt_text + "\n\n>>> ")
             clean_input = self.__sanitize_input(user_entered_txt)
@@ -142,13 +141,22 @@ class State:
             for action in allowed_actions:
                 if action == clean_input:
                     return action # e.g., 'run'
-            print('Not an answer bub')
+            if not loop_until_true:
+                return "fail"
+            if clean_input != "settingschange":
+                print('Not an answer bub')
 
     # parse user input to allowed values
     def __sanitize_input(self, user_input: str):
         txt = user_input.lower()
         if self.debug_objects == True:
             print(f"txt: {txt}")
+        if "knight" in txt:
+            return "knight"
+        if "wizard" in txt:
+            return "wizard"
+        if "rogue" in txt:
+            return "rogue"
         if "talk" in txt:
             return "talk"
         if "fight" in txt:
@@ -180,21 +188,35 @@ class State:
         if "dragon" in txt:
             return "the dragons den"
         if "faster" in txt:
-            return "faster"
+            speed = max(0.00, Util.print_speed - 0.01)
+            print(f"ok, new speed: {speed}")
+            Util.print_speed = speed
+            return "settingschange"
         if "fastest" in txt:
-            return "fastest"
+            speed = 0.00
+            print(f"ok, new speed: {speed}")
+            Util.print_speed = speed
+            return "settingschange"
         if "slower" in txt:
-            return "slower"
+            speed = min(Util.print_speed_default + 0.01, Util.print_speed + 0.01)
+            print(f"ok, new speed: {speed}")
+            Util.print_speed = speed
+            return "settingschange"
         if "restart" in txt:
-            return "restart"
+            state.stateid = 'id-game-restart'
+            Util.print_speed = Util.print_speed_default
+            return "settingschange"
         if "debugobj" in txt:
             self.set_debug_objects(True)
+            return "settingschange"
         if "debugtime" in txt:
             self.set_debug_time(True)
+            return "settingschange"
         if "ndebug" in txt:
             self.set_debug_objects(False)
             self.set_debug_time(False)
-        return "fail"
+            return "settingschange"
+        return "fail" #not valid
 
     # ask user what class they want to play
     def prompt_for_archetype(self):
@@ -209,14 +231,14 @@ class State:
         while True:
             for arch in self.player.archetypes: # print list of classes
                 print(' *', arch.title()) # print numbered list of node types
-            sel = input("\nPlease select which class you would like to play:\n>>> ")
-            if sel.lower() == 'knight':
+            sel = state.process_input("Please enter which class you would like to play:", ["knight", "wizard", "rogue"], False)
+            if sel == 'knight':
                 self.player.archetype = 'knight'
                 Util.print_slow("\nYou have chosen Knight, a strong choice!\n\n", False)
-            elif sel.lower() == 'wizard':
+            elif sel == 'wizard':
                 self.player.archetype = 'wizard'
                 Util.print_slow("\nYou have chosen Wizard, a wise choice!\n\n",  False)
-            elif sel.lower() == 'rogue':
+            elif sel == 'rogue':
                 self.player.archetype = 'rogue'
                 Util.print_slow("\nYou have chosen Rogue, a dexterous choice!\n\n", False)
 
@@ -228,7 +250,7 @@ class State:
                 break;
 
             # not a valid choice, loop again
-            print("\nPlease enter a valid option!")
+            print("\nPlease enter a valid option!\n")
             time.sleep(1)
 
 ##########################################################################
@@ -331,18 +353,18 @@ while True:
         if parse_input != None:
 
             # get user input choice, make sure it's a alloed key for this node
-            action_key = state.process_input(prompt_text, parse_input) # e.g. 'run'
+            action_key = state.process_input(prompt_text, parse_input, True) # e.g. 'run'
 
             # assign new state id base on that node key, but allow 'restart' always
             if action_key == 'restart':
                 state.stateid = 'id-game-restart'
                 Util.print_speed = Util.print_speed_default
             elif action_key == 'faster':
-                speed = max(0.00, Util.print_speed - 0.02)
+                speed = max(0.00, Util.print_speed - 0.01)
                 print(f"ok, new speed: {speed}")
                 Util.print_speed = speed
             elif action_key == 'slower':
-                speed = min(Util.print_speed_default + 0.02, Util.print_speed + 0.02)
+                speed = min(Util.print_speed_default + 0.01, Util.print_speed + 0.01)
                 print(f"ok, new speed: {speed}")
                 Util.print_speed = speed
             elif action_key == 'fastest':
@@ -364,12 +386,12 @@ while True:
         if roll_data_list != None:
 
             # get the stat list for this roll
-            roll_stat_list = node.get('roll_stats', []) # e.g., ["constitution","strength"]
+            roll_stat_list_pairs = node.get('roll_stats', []) # e.g., [["constitution" 4], ["strength" 2]]
 
             # get the item list
             roll_item_list_pairs = node.get('roll_items', []) # e.g., [["good-item", 2], ["bad-item", -4]]
 
-            roll_result = state.roll_dice(roll_data_list, roll_stat_list, roll_item_list_pairs) # e.g., roll_success
+            roll_result = state.roll_dice(roll_data_list, roll_stat_list_pairs, roll_item_list_pairs) # e.g., roll_success
 
             # assign new state id base on that roll result
             state.stateid = node[roll_result]
