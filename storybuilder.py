@@ -175,7 +175,7 @@ while True:
             node['prompt_text'] = prompt_text
 
         #get roll info
-        roll_dice = input(f"\n(REQUIRED) Enter the dice roll values for '{active_node_name}', seperated with spaces. EXAMPLE: 1 20 10\n\n>>> ")
+        roll_dice = input(f"\n(REQUIRED) Enter the dice roll values for '{targetname}', seperated with spaces. EXAMPLE: 1 20 10\n\n>>> ")
         roll_dice = roll_dice.replace("'", "").strip('"') #no single or double quotes
         while roll_dice and len(roll_dice) == 3:
             node['roll_dice'] = [int(roll_dice[0]), int(roll_dice[1]), int(roll_dice[2])]
