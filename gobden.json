@@ -15,8 +15,8 @@
         "leave": "id-gobden-leave"
     },
     "id-gobden-leave": {
-        "goto_node": "id-town-return",
-        "intro_text": ["You decide against waltzing into the goblin lair unprepared."]
+        "intro_text": ["You decide against waltzing into the goblin lair unprepared."],
+        "goto_node": "id-town-return"
     },
     "id-gobden-friend-check": {
         "intro_text": ["You duck through the entrance of the goblin hollow and slowly make your way to your demi-human audience."],
@@ -47,7 +47,7 @@
     },
     "id-gobden-friendly-convince-success": {
         "intro_text": ["You leave The Goblin Den with an agreement that the goblins will help you slay the dragon."],
-        "item_pickup": ["goblin-help"],
+        "item_pickup": ["goblin-help", "goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-friendly-convince-failure":
@@ -92,6 +92,7 @@
     },
     "id-gobden-nofriend-talk-failure": {
         "intro_text": ["You leave The Goblin Den unable to secure thier help, and have learned no new information about the Dragon."],
+        "item_pickup": ["goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-fight": {
@@ -113,6 +114,7 @@
     },
     "id-gobden-nofriend-fight-win": {
         "intro_text": ["The Den is clear. You defeat the goblins, and return to town."],
+        "item_pickup": ["goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-fight-lose": {
