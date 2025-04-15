@@ -96,6 +96,8 @@ class State:
             self.gamedata.update(json.load(json_file))
         with open('crypt.json') as json_file:
             self.gamedata.update(json.load(json_file))
+        with open('witch.json') as json_file:
+            self.gamedata.update(json.load(json_file))
         with open('dragon.json') as json_file:
             self.gamedata.update(json.load(json_file))
         if self.debug_objects == True:
