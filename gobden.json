@@ -27,7 +27,7 @@
     "id-gobden-notify-friend": {
         "intro_text": ["<your past deeds with the goblins come in handy>"],
         "goto_node" : "id-gobden-friend-convince",
-        "item_pickup": ["weak-spot"]
+        "item_pickup": ["weak-point"]
     },
     "id-gobden-friend-convince": {
         "intro_text": [
