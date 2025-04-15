@@ -21,6 +21,24 @@
         "yes" : "id-game-restart",
         "no" : "id-game-quit"
     },
+    "id-game-end-success" :
+    {
+        "intro_text" : ["",
+                        "",
+                        " __   __  _______  __   __    _     _  ___   __    _  __  ",
+                        "|  | |  ||       ||  | |  |  | | _ | ||   | |  |  | ||  | ",
+                        "|  |_|  ||   _   ||  | |  |  | || || ||   | |   |_| ||  | ",
+                        "|       ||  | |  ||  |_|  |  |       ||   | |       ||  | ",
+                        "|_     _||  |_|  ||       |  |       ||   | |  _    ||__| ",
+                        "  |   |  |       ||       |  |   _   ||   | | | |   | __  ",
+                        "  |___|  |_______||_______|  |__| |__||___| |_|  |__||__|",
+                        "",
+                        ""],
+        "prompt_text": "Would you like to play again?",
+        "parse_input": ["yes", "no"],
+        "yes" : "id-game-restart",
+        "no" : "id-game-quit"
+    },
     "id-game-restart" :
     {
         "goto_node" : "id-game-goto-restart"
