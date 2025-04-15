@@ -318,13 +318,13 @@ while True:
                 Util.print_slow(entry, True)
 
         # check to see if we picked up an item in this node
-        val = node.get('item_pickup', None) # e.g. ["stick-lady-map", "potion-of-stomping"]
+        val = node.get('item_pickup', None) # e.g. ["stick-lady-map", "vitality-potion"]
         if val != None:
             for item in val:
                 state.inventory.append(item)
 
         # check to see if we removed an item in this node
-        val = node.get('item_remove', None) # e.g. ["potion-of-stomping", "someother-item"]
+        val = node.get('item_remove', None) # e.g. ["vitality-potion", "someother-item"]
         if val != None:
             if state.debug_objects == True:
                 print(f"  | inventory before remove: {state.inventory}")
@@ -333,7 +333,7 @@ while True:
                 print(f"  | inventory after remove: {state.inventory}")
 
         # check to see if this is an inventory_check node
-        val = node.get('inventory_check', None) # e.g. ["stick-lady-map", "potion-of-stomping"]
+        val = node.get('inventory_check', None) # e.g. ["stick-lady-map", "vitality-potion"]
         if val != None:
             if state.debug_objects == True:
                 print(f" * inventory: {state.inventory}")
@@ -343,6 +343,17 @@ while True:
             else:
                 val = node['check_failure'] # e.g., "id-forest-blah-failure",
             state.stateid = val
+
+        # check to see if this is a class_check node
+        val = node.get('class_check', None) # e.g. ["knight", "rogue"]
+        if val != None:
+            if state.player.archetype in val:
+                val = node['check_success'] # e.g., "id-forest-blah-success",
+            else:
+                val = node['check_failure'] # e.g., "id-forest-blah-failure",
+            state.stateid = val
+            if state.debug_objects == True:
+                print(f"  | class check: new node: {state.stateid}")
 
         # see if this is a goto node
         val = node.get('goto_node', None) # val is either None, string name for next state
