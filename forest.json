@@ -44,7 +44,7 @@
     {
         "intro_text" : ["You dash into the brush and find yourself peering at the approaching group from behind a shaded tree.",
                         "A group of seven short, green-skinned humanoid figures sculk past your tree. Goblins, no doubt.",
-                        "They don’t see you, and you would have the upper hand in combat if you attack them now.",
+                        "They don't see you, and you would have the upper hand in combat if you attack them now.",
                         "But it would still be a tough fight. Maybe it’s best just to let them pass..."],
         "prompt_text": "(Pass, Talk, or Ambush)",
         "parse_input": ["pass", "talk", "ambush"],
