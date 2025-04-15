@@ -35,27 +35,29 @@
 						"Or perhaps you'd rather simply be rid of the goblins.",
 						"You also hear of a haunted crypt. It is said to contain a sword which always strikes true, and restless dead.",
 						"There is no reasoning with the undead, but there are other ways of getting what you want."],
-       "goto_node" :  "id-town-choice-perroll"
+       "goto_node" :  "id-town-choice-supply-search-check"
 	},
     "id-town-return" :
     {
 		"intro_text" : ["","You find yourself back in the town"],
-        "inventory_check" : ["supplies"],
+        "inventory_check" : ["supplies-done"],
         "check_success" : "id-town-choice-steel-continue",
-        "check_failure" : "id-town-choice-perroll"
+        "check_failure" : "id-town-choice-supply-search-check"
     },
-	"id-town-choice-perroll" :
+	"id-town-choice-supply-search-check" :
     {
         "prompt_text": "Press enter to roll for perception",
 		"roll_dice" : [1, 20, 15],
         "roll_stats" : [["wisdom", 15], ["dexterity", 10]],
+        "item_pickup": ["supplies-done"],
 		"roll_success" : "id-town-choice-steel-success",
         "roll_failure" : "id-town-choice-steel-continue"
 	},
 	"id-town-choice-steel-success" :
     {
-		"intro_text" : ["You eye some useful supplies near a small forge behind the stable. The blacksmith could be convinced to give up some of their supplies. Do you talk to the smith?"],
-		"prompt_text": "(Yes or No)",
+		"intro_text" : ["You eye some useful supplies near a small forge behind the stable.",
+						"The blacksmith could be convinced to give up some of their supplies."],
+		"prompt_text": "Do you talk to the smith? (Yes or No)",
 		"parse_input": ["yes", "no"],
 		"yes" : "id-town-choice-steel-success-yes",
         "no" : "id-town-choice-steel-continue"
