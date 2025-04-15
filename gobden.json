@@ -52,7 +52,7 @@
     },
     "id-gobden-friendly-convince-failure":
     {
-        "intro_text": ["You leave The Goblin Den unable to secure thier help, but you did learn valuble information."],
+        "intro_text": ["You leave The Goblin Den unable to secure their help, but you did learn valuble information."],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-convince": {
@@ -92,7 +92,6 @@
     },
     "id-gobden-nofriend-talk-failure": {
         "intro_text": ["You leave The Goblin Den unable to secure thier help, and have learned no new information about the Dragon."],
-        "item_pickup": ["goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-fight": {
