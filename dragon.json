@@ -90,8 +90,7 @@
                        "The chamber is engulfed in heat and dense, orange dragonfire."],
         "roll_dice" : [1, 20, 5],
         "prompt_text": "Roll to determine your fate.",
-        "roll_stats": [["wisdom", 5]],
-        "roll_items": [],
+        "roll_stats": [["wisdom", 6]],
         "roll_success": "id-dragon-attack-one-breath-wizard-success",
         "roll_failure": "id-dragon-fail-one"
     },
@@ -100,8 +99,6 @@
                        "The chamber is engulfed in heat and dense, orange dragonfire."],
         "roll_dice" : [1, 20, 5],
         "prompt_text": "Roll to determine your fate.",
-        "roll_stats": [],
-        "roll_items": [],
         "roll_success": "id-dragon-attack-one-breath-nowizard-success",
         "roll_failure": "id-dragon-fail-one"
     },
