@@ -42,7 +42,7 @@
             "Bones and coins crunch under your feet as you try to keep your footing on the descending, ribbed floor of the den.",
             "You see a deep orange glow crawl out from the distant tunnel. It grows across the tunnel walls as you approach the dragon.",
             "The dragon watches you...",
-            "A giant pile of bodies and wooden rubble burns with deep, orange dragonfire from behind the resting dragon.",
+            "A giant pile of bodies and wooden rubble burns with deep, black-tipped orange dragonfire from behind the resting dragon.",
             "The dragon uncoils and eclipses the massive fireplace. Its wings stretch from wall to wall in the cathedral chamber.",
             "Fangs like swords, claws like spears. Its scales are a mottled russet and crimson, with eyes of piercing yellow. ",
             "The dragon is not a mere creature, it is a force. It is said to be destruction, ruin, the apocalypse.",
@@ -77,7 +77,7 @@
         "intro_text": ["Intro Text for dragon here @@@@@@@@@@@@@@"],
         "roll_dice" : [1, 20, 5],
         "prompt_text": "Roll to determine your fate.",
-        "roll_stats": ["wisdom", "wisdom","wisdom", "wisdom", "wisdom"],
+        "roll_stats": [["wisdom", 5]],
         "roll_items": [],
         "roll_success": "id-dragon-attack-two-bite",
         "roll_failure": "id-dragon-fail-one"
@@ -107,7 +107,7 @@
         "intro_text": ["You prepare your greatest attack."],
         "roll_dice" : [1, 20, 19],
         "prompt_text": "Roll for your attack success.",
-        "roll_stats": ["strength","strength","strength"],
+        "roll_stats": [["strength", 3]],
         "roll_items": [["magic-sword",5]],
         "roll_success": "id-dragon-kill",
         "roll_failure": "id-dragon-playerattack-missed"
@@ -116,7 +116,7 @@
         "roll_dice" : [1, 20, 19],
         "intro_text": ["You prepare your greatest attack."],
         "prompt_text": "Roll for your attack success.",
-        "roll_stats": ["strength", "strength", "strength", "dexterity", "dexterity", "dexterity","dexterity","dexterity","dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
+        "roll_stats": [["strength", 3], ["dexterity", 10]],
         "roll_items": [["magic-sword", 5], ["weak-spot", 9]],
         "roll_success": "id-dragon-kill",
         "roll_failure": "id-dragon-playerattack-missed"
@@ -127,7 +127,7 @@
     },
     "id-dragon-kill": {
         "intro_text": ["Yafassssssssfdasdse. @@@@@@@@@@@@@@"],
-        "goto_node": "id-game-end"
+        "goto_node": "id-game-end-success"
     },
     "id-dragon-fail-one": {
         "intro_text": ["You die from attack 1"],
