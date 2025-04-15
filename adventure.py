@@ -8,6 +8,7 @@ import os
 class Util:
 
     print_speed_default = .03
+    print_speed_override = -1.0
     print_speed = .03
 
     @staticmethod
@@ -16,18 +17,28 @@ class Util:
 
     @staticmethod
     def print_slow(s: str, addquotes: bool):
+
         if s == "":
             print()
             return
+
+        speed = Util.print_speed
+        if float(Util.print_speed_override) >= 0.0:
+            speed = float(Util.print_speed_override)
+            Util.print_speed_override = -1.0
+
         if addquotes == True:
             print("    \"", end='')
+
         for letter in s:
             print(letter, end='')
             sys.stdout.flush()
-            if Util.print_speed > 0.0:
-                    time.sleep(Util.print_speed)
+            if speed > 0.0:
+                time.sleep(speed)
+
         if addquotes == True:
             print("\"")
+        Util.print_next_one_fastest = False
 
     @staticmethod
     def clear_console():
@@ -315,10 +326,17 @@ while True:
             print('*' * 120)
             print()
 
+        #see if we have a print speed override
+        speed_override = -1.0
+        val = node.get('print_speed', None) # val is either None, or a list of strings
+        if val != None:
+            speed_override = float(val)
+
         # print intro text for this event
         val = node.get('intro_text', None) # val is either None, or a list of strings
         if val != None:
             for entry in val:
+                Util.print_speed_override = speed_override
                 Util.print_slow(entry, True)
 
         # check to see if we picked up an item in this node
