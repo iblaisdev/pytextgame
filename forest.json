@@ -60,7 +60,7 @@
     "id-forest-footsteps-hide-goblin-talk" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : [["charisma", 10], ["wisdom", 5]],
+        "roll_stats" : [["charisma", 11], ["wisdom", 5]],
         "roll_success" : "id-forest-footsteps-hide-goblin-talk-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-talk-fail"
     },
@@ -85,14 +85,14 @@
     "id-forest-footsteps-hide-goblin-ambush" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : [["dexterity", 10], ["strength", 9]],
+        "roll_stats" : [["dexterity", 11], ["strength", 9]],
         "roll_success" : "id-forest-footsteps-hide-goblin-ambush-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-ambush-fail"
     },
     "id-forest-branchbreak-goblin-talk" :
     {
         "roll_dice" : [1, 20, 15],
-        "roll_stats" : [["wisdom", 15], ["charisma", 7]],
+        "roll_stats" : [["wisdom", 16], ["charisma", 7]],
         "roll_success" : "id-forest-branchbreak-goblin-talk-success",
         "roll_failure" : "id-forest-branchbreak-goblin-talk-fail"
     },
