@@ -1,0 +1,122 @@
+{
+    "id-gobden-start": {
+        "goto_node": "id-gobden-enter",
+        "intro_text": [
+            "The goblin den is at the heart of the woods. The path is short but difficult and overgrown.",
+            "The den itself is a number of rooms and tunnels dug into a hill, reinforced with simple mud walls.",
+            "Foul smells waft from the windows around the hill. Bones litter the area, animal and otherwise.",
+            "The entrance of the den is well lit with torch light, and you can see a large gathering of goblins in a central chamber."]
+    },
+    "id-gobden-enter": {
+        "intro_text": ["","What do you do?"],
+        "prompt_text": "(Enter or Leave)",
+        "parse_input": ["enter", "leave"],
+        "enter": "id-gobden-friend-check",
+        "leave": "id-gobden-leave"
+    },
+    "id-gobden-leave": {
+        "intro_text": ["You decide against waltzing into the goblin lair unprepared."],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-friend-check": {
+        "intro_text": ["You duck through the entrance of the goblin hollow and slowly make your way to your demi-human audience."],
+        "inventory_check": ["goblin-friend"],
+        "check_success": "id-gobden-notify-friend",
+        "check_failure": "id-gobden-nofriend-convince"
+    },
+    "id-gobden-notify-friend": {
+        "intro_text": [""],
+        "goto_node" : "id-gobden-friend-convince",
+        "item_pickup": ["weak-point"]
+    },
+    "id-gobden-friend-convince": {
+        "intro_text": [
+            "You cautiously approach the central chamber, and reveal yourself to your audience of demi-humans.",
+            "The goblins remember you after your meeting in the woods! They are amiable to your presence, and offer trade.",
+            "As you are trading in small things, you tell them of the dragon and your preparations to slay it.",
+            "The goblins suddenly become very quiet. after you mention the dragon. Their leader approaches you.",
+            "The chieftain tells you that they have been at war with the dragon for months with no success.",
+            "The dragon has killed many goblins and has taken their original home. They have no means of slaying the dragon.",
+            "But they have learned something. The dragon has a missing scale on the left side of its neck, a single weak point.",
+            "A single well placed attack would kill the dragon. It is possible after all."],
+        "prompt_text": "Roll to convince the goblins to help you.",
+        "roll_dice" : [1, 20, 5],
+        "roll_stats": [["charisma", 5]],
+        "roll_success": "id-gobden-friendly-convince-success",
+        "roll_failure": "id-gobden-friendly-convince-failure"
+    },
+    "id-gobden-friendly-convince-success": {
+        "intro_text": ["You leave The Goblin Den with an agreement that the goblins will help you slay the dragon."],
+        "item_pickup": ["goblin-help", "goblin-done"],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-friendly-convince-failure":
+    {
+        "intro_text": ["You leave The Goblin Den unable to secure their help, but you did learn valuble information."],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-nofriend-convince": {
+        "intro_text": [
+            "You peer around the tunnel corner into the central chamber. The earthy air is filled with tension and impatience. The goblins are angry.",
+            "Their attempts at driving away the dragon have been unsuccessful, and they blame their oafish chieftains.",
+            "You might be able to convince them to help you kill the dragon, your mutual enemy, but it wouldn't be easy.",
+            "You could just kill and take their loot and knowledge by force, but that might be even harder"],
+        "goto_node": "id-gobden-nofriend-convince-supplies-check"
+    },
+    "id-gobden-nofriend-convince-supplies-check": {
+        "inventory_check": ["supplies"],
+        "check_success": "id-gobden-nofriend-convince-supplies-check-success",
+        "check_failure": "id-gobden-nofriend-convince-or-fight"
+    },
+    "id-gobden-nofriend-convince-supplies-check-success": {
+        "intro_text": ["You notice barrels of stolen ale pile in the corners of the chamber. Using your supplies you could lay a trap in the hall, and set the ale ablaze, making quick work of the goblins."],
+        "goto_node": "id-gobden-nofriend-convince-or-fight"
+    },
+    "id-gobden-nofriend-convince-or-fight": {
+        "intro_text": ["","What do you do?"],
+        "prompt_text": "(Talk or Fight)",
+        "parse_input": ["talk", "fight"],
+        "talk": "id-gobden-nofriend-talk",
+        "fight": "id-gobden-nofriend-fight"
+    },
+
+    "id-gobden-nofriend-talk": {
+        "prompt_text": "Roll to convince the goblins to help you.",
+        "roll_dice" : [1, 20, 15],
+        "roll_stats": [["charisma", 10], ["wisdom", 5]],
+        "roll_success": "id-gobden-nofriend-talk-success",
+        "roll_failure": "id-gobden-nofriend-talk-failure"
+    },
+    "id-gobden-nofriend-talk-success": {
+        "goto_node": "id-gobden-friendly-convince-success"
+    },
+    "id-gobden-nofriend-talk-failure": {
+        "intro_text": ["You leave The Goblin Den unable to secure thier help, and have learned no new information about the Dragon."],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-nofriend-fight": {
+        "inventory_check": ["supplies"],
+        "check_success": "id-gobden-nofriend-fight-supplies",
+        "check_failure": "id-gobden-nofriend-fight-nosupplies"
+    },
+    "id-gobden-nofriend-fight-supplies": {
+        "roll_dice" : [1, 20, 15],
+        "roll_stats": [["strength", 5]],
+        "roll_success": "id-gobden-nofriend-fight-win",
+        "roll_failure": "id-gobden-nofriend-fight-lose"
+    },
+    "id-gobden-nofriend-fight-nosupplies": {
+        "roll_dice" : [1, 20, 5],
+        "roll_stats": [["strength", 5]],
+        "roll_success": "id-gobden-nofriend-fight-win",
+        "roll_failure": "id-gobden-nofriend-fight-lose"
+    },
+    "id-gobden-nofriend-fight-win": {
+        "intro_text": ["The Den is clear. You defeat the goblins, and return to town."],
+        "item_pickup": ["goblin-done"],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-nofriend-fight-lose": {
+        "goto_node" : "id-game-end"
+    }
+}
