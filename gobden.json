@@ -59,7 +59,7 @@
         "intro_text": [
             "You peer around the tunnel corner into the central chamber. The earthy air is filled with tension and impatience. The goblins are angry.",
             "Their attempts at driving away the dragon have been unsuccessful, and they blame their oafish chieftains.",
-            "You might be able to convince them to help you kill the dragon, your mutual enemy, but it wouldn’t be easy.",
+            "You might be able to convince them to help you kill the dragon, your mutual enemy, but it wouldn't be easy.",
             "You could just kill and take their loot and knowledge by force, but that might be even harder"],
         "goto_node": "id-gobden-nofriend-convince-supplies-check"
     },
