@@ -41,7 +41,7 @@
             "A single well placed attack would kill the dragon. It is possible after all."],
         "prompt_text": "Roll to convince the goblins to help you.",
         "roll_dice" : [1, 20, 5],
-        "roll_stats": ["charisma", "charisma","charisma","charisma","charisma"],
+        "roll_stats": [["charisma", 5]],
         "roll_success": "id-gobden-friendly-convince-success",
         "roll_failure": "id-gobden-friendly-convince-failure"
     },
@@ -83,7 +83,7 @@
     "id-gobden-nofriend-talk": {
         "prompt_text": "Roll to convince the goblins to help you.",
         "roll_dice" : [1, 20, 15],
-        "roll_stats": ["charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom"],
+        "roll_stats": [["charisma", 10], ["wisdom", 5]],
         "roll_success": "id-gobden-nofriend-talk-success",
         "roll_failure": "id-gobden-nofriend-talk-failure"
     },
@@ -101,13 +101,13 @@
     },
     "id-gobden-nofriend-fight-supplies": {
         "roll_dice" : [1, 20, 15],
-        "roll_stats": ["strength", "strength", "strength", "strength", "strength"],
+        "roll_stats": [["strength", 5]],
         "roll_success": "id-gobden-nofriend-fight-win",
         "roll_failure": "id-gobden-nofriend-fight-lose"
     },
     "id-gobden-nofriend-fight-nosupplies": {
         "roll_dice" : [1, 20, 5],
-        "roll_stats": ["strength", "strength", "strength", "strength", "strength"],
+        "roll_stats": [["strength", 5]],
         "roll_success": "id-gobden-nofriend-fight-win",
         "roll_failure": "id-gobden-nofriend-fight-lose"
     },
