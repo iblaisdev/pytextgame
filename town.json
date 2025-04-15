@@ -39,7 +39,7 @@
 	},
     "id-town-return" :
     {
-		"intro_text" : ["You find yourself back in the town"],
+		"intro_text" : ["","You find yourself back in the town"],
         "inventory_check" : ["supplies"],
         "check_success" : "id-town-choice-steel-continue",
         "check_failure" : "id-town-choice-perroll"
