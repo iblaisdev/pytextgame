@@ -1,0 +1,144 @@
+{
+    "id-dragon-start": {
+        "goto_node": "id-dragon-enter",
+        "intro_text": [
+            "The Dragon's Den sits under the northern mountains that create the valley the forest town is nestled in.",
+            "The path there is difficult, but you hardly notice the time pass with the dragon looming in your thoughts.",
+            "You soon reach the Dragon's Den...",
+            "",
+            "As you stand in the shadow of the white mountains, the maw of the dragon's cavern yawns before you.",
+            "The cave is wide. It's full of large stalactites and stalagmites that grow from the ceiling and floor of the cave.",
+            "It looks like a great mouth, one that you are about to walk right into..."
+        ]
+    },
+    "id-dragon-enter": {
+        "prompt_text": "Do you turn back? (Yes or No)",
+        "parse_input": [
+            "yes",
+            "no"
+        ],
+        "yes": "id-dragon-backtotown",
+        "no": "id-dragon-gobcheck"
+    },
+    "id-dragon-backtotown": {
+        "intro_text": ["You wisely decide to leave the Dragon's den."],
+        "goto_node": "id-town-return"
+    },
+    "id-dragon-gobcheck": {
+        "inventory_check": ["goblin-help"],
+        "check_success": "id-dragon-gobcheck-success",
+        "check_failure": "id-dragon-intro-text"
+    },
+    "id-dragon-gobcheck-success": {
+        "goto_node": "id-dragon-intro-text",
+        "intro_text": [
+            "As you enter the cavern, you see the bodies of the goblins that you convince to fight the dragon. They're all dead.",
+            "By the looks of it, they died fighting the dragon. Did they kill it?"
+        ]
+    },
+    "id-dragon-intro-text": {
+        "intro_text": [
+            "The cold blue-gray walls of the cavern grow with warmth as you venture deeper toward the dragon.",
+            "Bones and coins crunch under your feet as you try to keep your footing on the descending, ribbed floor of the den.",
+            "You see a deep orange glow crawl out from the distant tunnel. It grows across the tunnel walls as you approach the dragon.",
+            "The dragon watches you...",
+            "A giant pile of bodies and wooden rubble burns with deep, orange dragonfire from behind the resting dragon.",
+            "The dragon uncoils and eclipses the massive fireplace. Its wings stretch from wall to wall in the cathedral chamber.",
+            "Fangs like swords, claws like spears. Its scales are a mottled russet and crimson, with eyes of piercing yellow. ",
+            "The dragon is not a mere creature, it is a force. It is said to be destruction, ruin, the apocalypse.",
+            "But when you look into the shifting patterned eyes of the dragon, you see time, the future. Your Death."],
+        "goto_node": "id-dragon-attack-one-breath"
+    },
+    "id-dragon-gobcheck-again": {
+        "inventory_check": ["goblin-help"],
+        "check_success": "id-dragon-goblin-aid-text",
+        "check_failure": "id-dragon-weak-point-check"
+    },
+    "id-dragon-goblin-aid-text": {
+        "goto_node": "id-dragon-attack-one-breath",
+        "intro_text": [
+            "Goblin blood stains the teeth and maw of the dragon. A number of spears jut from the mouth and jaw of the dragon.",
+            "The dragon's normally smooth scales are pushed and punctured around its lips from spearheads.",
+            "Spear shafts clog the dragon's jaws, preventing it from closing its mouth or attempting a bite.",
+            "The goblins did not die in vain."]
+    },
+    "id-dragon-weak-point-check": {
+        "inventory_check": ["weap-point"],
+        "check_success": "id-dragon-weak-point-text",
+        "check_failure": "id-dragon-attack-one-breath"
+    },
+    "id-dragon-weak-point-text": {
+        "goto_node": "id-dragon-attack-one-breath",
+        "intro_text": [
+            "More importantly, the missing scale is as reported. It’s only a hand's length from the left corner of the dragon’s mouth.",
+            "It just might be possible..."]
+    },
+    "id-dragon-attack-one-breath": {
+        "intro_text": ["Intro Text for dragon here @@@@@@@@@@@@@@"],
+        "roll_dice" : [1, 20, 5],
+        "prompt_text": "Roll to determine your fate.",
+        "roll_stats": ["wisdom", "wisdom","wisdom", "wisdom", "wisdom"],
+        "roll_items": [],
+        "roll_success": "id-dragon-attack-two-bite",
+        "roll_failure": "id-dragon-fail-one"
+    },
+    "id-dragon-attack-two-bite": {
+        "intro_text": ["You survive the dragon's breath attack. It prepares to bite."],
+        "prompt_text": "Roll to determine your fate.",
+        "roll_dice" : [1, 20, 5],
+        "roll_items": [["goblin-help",5]],
+        "roll_success": "id-dragon-attack-three-claws",
+        "roll_failure": "id-dragon-fail-two"
+    },
+    "id-dragon-attack-three-claws": {
+        "intro_text": ["You survived the bite attack, but the the dragon rears its claws."],
+        "prompt_text": "Roll to determine your fate.",
+        "roll_dice" : [1, 20, 5],
+        "roll_items": [],
+        "roll_success": "id-dragon-playerattack-weak-spot-check",
+        "roll_failure": "id-dragon-fail-three"
+    },
+    "id-dragon-playerattack-weak-spot-check": {
+        "inventory_check": ["weak-spot"],
+        "check_success": "id-dragon-playerattack-weak-spot",
+        "check_failure": "id-dragon-playerattack-no-weak-spot"
+    },
+    "id-dragon-playerattack-no-weak-spot": {
+        "intro_text": ["You prepare your greatest attack."],
+        "roll_dice" : [1, 20, 19],
+        "prompt_text": "Roll for your attack success.",
+        "roll_stats": ["strength","strength","strength"],
+        "roll_items": [["magic-sword",5]],
+        "roll_success": "id-dragon-kill",
+        "roll_failure": "id-dragon-playerattack-missed"
+    },
+    "id-dragon-playerattack-weak-spot": {
+        "roll_dice" : [1, 20, 19],
+        "intro_text": ["You prepare your greatest attack."],
+        "prompt_text": "Roll for your attack success.",
+        "roll_stats": ["strength", "strength", "strength", "dexterity", "dexterity", "dexterity","dexterity","dexterity","dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
+        "roll_items": [["magic-sword", 5], ["weak-spot", 9]],
+        "roll_success": "id-dragon-kill",
+        "roll_failure": "id-dragon-playerattack-missed"
+    },
+    "id-dragon-playerattack-missed": {
+        "intro_text": ["Your attack misses, and the dragon prepares its next attack."],
+        "goto_node": "id-dragon-attack-one-breath"
+    },
+    "id-dragon-kill": {
+        "intro_text": ["Yafassssssssfdasdse. @@@@@@@@@@@@@@"],
+        "goto_node": "id-game-end"
+    },
+    "id-dragon-fail-one": {
+        "intro_text": ["You die from attack 1"],
+        "goto_node": "id-game-end"
+    },
+    "id-dragon-fail-two": {
+        "intro_text": ["You die from attack 2"],
+        "goto_node": "id-game-end"
+    },
+    "id-dragon-fail-three": {
+        "intro_text": ["You die from attack 3"],
+        "goto_node": "id-game-end"
+    }
+}
