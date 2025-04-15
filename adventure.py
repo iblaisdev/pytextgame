@@ -323,6 +323,15 @@ while True:
             for item in val:
                 state.inventory.append(item)
 
+        # check to see if we removed an item in this node
+        val = node.get('item_remove', None) # e.g. ["potion-of-stomping", "someother-item"]
+        if val != None:
+            if state.debug_objects == True:
+                print(f"  | inventory before remove: {state.inventory}")
+            state.inventory = [e for e in state.inventory if e not in val]
+            if state.debug_objects == True:
+                print(f"  | inventory after remove: {state.inventory}")
+
         # check to see if this is an inventory_check node
         val = node.get('inventory_check', None) # e.g. ["stick-lady-map", "potion-of-stomping"]
         if val != None:
