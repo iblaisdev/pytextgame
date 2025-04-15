@@ -8,9 +8,7 @@
             "",
             "As you stand in the shadow of the white mountains, the maw of the dragon's cavern yawns before you.",
             "The cave is wide. It's full of large stalactites and stalagmites that grow from the ceiling and floor of the cave.",
-            "It looks like a great mouth, one that you are about to walk right into..."
-        ]
-        ,"item_pickup" : ["vitality-potion", "goblin-friend"]
+            "It looks like a great mouth, one that you are about to walk right into..."]
     },
     "id-dragon-enter": {
         "prompt_text": "Do you turn back? (Yes or No)",
