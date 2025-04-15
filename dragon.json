@@ -70,7 +70,7 @@
     "id-dragon-weak-point-text": {
         "goto_node": "id-dragon-attack-one-breath",
         "intro_text": [
-            "More importantly, the missing scale is as reported. It’s only a hand's length from the left corner of the dragon’s mouth.",
+            "More importantly, the missing scale is as reported. It's only a hand's length from the left corner of the dragon's mouth.",
             "It just might be possible..."]
     },
     "id-dragon-attack-one-breath": {
