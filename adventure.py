@@ -20,7 +20,7 @@ class Util:
             print()
             return
         if addquotes == True:
-            print("\"", end='')
+            print("    \"", end='')
         for letter in s:
             print(letter, end='')
             sys.stdout.flush()
