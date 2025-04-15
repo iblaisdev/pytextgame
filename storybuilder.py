@@ -177,14 +177,15 @@ while True:
         #get roll info
         roll_dice = input(f"\n(REQUIRED) Enter the dice roll values for '{targetname}', seperated with spaces. EXAMPLE: 1 20 10\n\n>>> ")
         roll_dice = roll_dice.replace("'", "").strip('"') #no single or double quotes
-        while roll_dice and len(roll_dice) == 3:
+        roll_dice = roll_dice.split(' ')
+        if roll_dice and len(roll_dice) == 3:
             node['roll_dice'] = [int(roll_dice[0]), int(roll_dice[1]), int(roll_dice[2])]
 
         #get roll stats
         prompt = f"\n(OPTIONAL) Enter roll_stat modifiers for node '{targetname}'. Use SPACE to seperate entries. EXAMPLE: wisdom wisdom charisma:\n\n>>> "
         roll_stats = state.read_space_separated_list(prompt)
         if roll_stats:
-            node['roll_stats'] = [roll_stats]
+            node['roll_stats'] = roll_stats
 
         # see if there is an item pickup for this node
         itemlist = input(f"\n(OPTIONAL) Enter any item_pickup for '{targetname}', seperated with spaces. Leave blank for none. EXAMPLE: stick-lady-map another-item\n\n>>> ")
