@@ -9,8 +9,7 @@
         "intro_text" : ["You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
-        "roll_items" : [["example-item", -2]],
+        "roll_stats" : [["wisdom", 10], ["dexterity", 5]],
         "roll_success" : "id-forest-footsteps",
         "roll_failure" : "id-forest-branchbreak"
     },
@@ -61,7 +60,7 @@
     "id-forest-footsteps-hide-goblin-talk" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom"],
+        "roll_stats" : [["charisma", 10], ["wisdom", 5]],
         "roll_success" : "id-forest-footsteps-hide-goblin-talk-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-talk-fail"
     },
@@ -86,14 +85,14 @@
     "id-forest-footsteps-hide-goblin-ambush" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "strength", "strength", "strength", "strength", "strength", "strength", "strength", "strength", "strength"],
+        "roll_stats" : [["dexterity", 10], ["strength", 9]],
         "roll_success" : "id-forest-footsteps-hide-goblin-ambush-success",
         "roll_failure" : "id-forest-footsteps-hide-goblin-ambush-fail"
     },
     "id-forest-branchbreak-goblin-talk" :
     {
         "roll_dice" : [1, 20, 15],
-        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma", "charisma"],
+        "roll_stats" : [["wisdom", 15], ["charisma", 7]],
         "roll_success" : "id-forest-branchbreak-goblin-talk-success",
         "roll_failure" : "id-forest-branchbreak-goblin-talk-fail"
     },
@@ -126,7 +125,7 @@
     "id-forest-branchbreak-goblin-fight" :
     {
         "roll_dice" : [1, 20, 10],
-        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution", "constitution"],
+        "roll_stats" : [["wisdom", 9], ["constitution", 8]],
         "roll_success" : "id-forest-branchbreak-goblin-fight-success",
         "roll_failure" : "id-forest-branchbreak-goblin-fight-fail"
     },
