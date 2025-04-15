@@ -46,6 +46,7 @@
     },
 	"id-town-choice-supply-search-check" :
     {
+		"intro_text" : ["","You feel your senses tingle."],
         "prompt_text": "Press enter to roll for perception",
 		"roll_dice" : [1, 20, 15],
         "roll_stats" : [["wisdom", 15], ["dexterity", 10]],
