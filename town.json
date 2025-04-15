@@ -35,19 +35,23 @@
 						"Or perhaps you’d rather simply be rid of the goblins.",
 						"You also hear of a haunted crypt. It is said to contain a sword which always strikes true, and restless dead.",
 						"There is no reasoning with the undead, but there are other ways of getting what you want."],
-        "prompt_text": "Press enter to roll for perception",
-		"roll_dice" : [1, 20, 15],
-        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
-		"roll_success" : "id-town-choice-steel-success",
-        "roll_failure" : "id-town-choice-steel-continue"
+       "goto_node" :  "id-town-choice-perroll"
 	},
     "id-town-return" :
     {
 		"intro_text" : ["You find yourself back in the town"],
         "inventory_check" : ["supplies"],
         "check_success" : "id-town-choice-steel-continue",
-        "check_failure" : "id-town-choice-steel-success"
+        "check_failure" : "id-town-choice-perroll"
     },
+	"id-town-choice-perroll" :
+    {
+        "prompt_text": "Press enter to roll for perception",
+		"roll_dice" : [1, 20, 15],
+        "roll_stats" : ["wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "wisdom", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity", "dexterity"],
+		"roll_success" : "id-town-choice-steel-success",
+        "roll_failure" : "id-town-choice-steel-continue"
+	},
 	"id-town-choice-steel-success" :
     {
 		"intro_text" : ["You eye some useful supplies near a small forge behind the stable. The blacksmith could be convinced to give up some of their supplies. Do you talk to the smith?"],
@@ -77,6 +81,7 @@
 	},	
 	"id-town-choice-steel-continue" :
     {
+		"intro_text" : [""],
 		"inventory_check" : ["stick-lady-map"],
 		"check_success" : "id-town-choice-yesmap",
 		"check_failure" : "id-town-choice-nomap"
@@ -96,8 +101,7 @@
 	},
 	"id-town-choice-nomap" :
     {
-		"intro_text" : ["",
-						"Where shall you travel?"],
+		"intro_text" : ["Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Dragon's Den",
 		"parse_input": ["the crypt","the goblin den","the dragons den"],
 		"the crypt" : "id-check-crypt-item",
@@ -106,19 +110,19 @@
 	},
 	"id-check-crypt-item" :
     {
-		"inventory_check" : ["magic-sword"],
+		"inventory_check" : ["crypt-done"],
         "check_success" : "id-check-area-had-item",
         "check_failure" : "id-leave-for-crypt"
     },
 	"id-check-gobden-item" :
     {
-		"inventory_check" : ["goblin-help"],
+		"inventory_check" : ["goblin-done"],
         "check_success" : "id-check-area-had-item",
         "check_failure" : "id-leave-for-gobden"
     },
 	"id-check-witch-item" :
     {
-		"inventory_check" : ["witch-potion"],
+		"inventory_check" : ["witch-done"],
         "check_success" : "id-check-area-had-item",
         "check_failure" : "id-leave-for-witch"
     },
