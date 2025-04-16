@@ -202,7 +202,7 @@
                        "",
                        "You land in a pile of bones and gold while scrambling to recover your sword.",
                        "It would take a minor miracle to survive another onslaught.",
-                       "And here it comes...",
+                       "And here it comes..."
         ],
         "goto_node": "id-dragon-attack-one-breath"
     },
