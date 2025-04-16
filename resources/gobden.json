@@ -15,19 +15,22 @@
         "leave": "id-gobden-leave"
     },
     "id-gobden-leave": {
-        "intro_text": ["You decide against waltzing into the goblin lair unprepared."],
+        "intro_text": ["You decide that the goblins need not sacrifice themselves in your fight against the dragon.",
+        "You have the knowledge you need, and that is enough. It will have to be enough.",
+        "",
+        "You thank them for sharing their goblinoid wisdom as you make your way back to town."],
         "goto_node": "id-town-return"
     },
     "id-gobden-friend-check": {
-        "intro_text": ["You duck through the entrance of the goblin hollow and slowly make your way to your demi-human audience."],
+        "intro_text": ["You duck through the entrance of the goblin hollow and slowly make your way to your demi-human audience.",
+        ""],
         "inventory_check": ["goblin-friend"],
         "check_success": "id-gobden-notify-friend",
         "check_failure": "id-gobden-nofriend-convince"
     },
     "id-gobden-notify-friend": {
-        "intro_text": [""],
-        "goto_node" : "id-gobden-friend-convince",
-        "item_pickup": ["weak-point"]
+        "item_pickup": ["weak-point"],
+        "goto_node" : "id-gobden-friend-convince"
     },
     "id-gobden-friend-convince": {
         "intro_text": [
@@ -46,13 +49,24 @@
         "roll_failure": "id-gobden-friendly-convince-failure"
     },
     "id-gobden-friendly-convince-success": {
-        "intro_text": ["You leave The Goblin Den with an agreement that the goblins will help you slay the dragon."],
+        "intro_text": ["The crowd is eager for motivation. The goblins think themselves weak in the face of the dragon, but not doomed.",
+        "They yearn for their past and what they once had. But perhaps not all is lost...",
+        "You tell them of the glory that stands before them, to reclaim their home and to slay the dragon in a fell swoop.",
+        "The goblins are electric, their fear washes away while they prepare for glory. Or death.",
+        "",
+        "They thank you for your traveler's wisdom as you make your way back to town.",
+        "They will fight for you against the dragon when the need arises."],
         "item_pickup": ["goblin-help", "goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-friendly-convince-failure":
     {
-        "intro_text": ["You leave The Goblin Den unable to secure their help, but you did learn valuble information."],
+        "intro_text": ["As you try and reinvigorate the fighting spirit of the goblins, you realize that you are sending them to their deaths.",
+        "Doubt fills your mind as you come to the conclusion that no more lives need to be lost to the dragon.",
+        "The goblins need not sacrifice themselves for the human world, and you need not their help.",
+        "You have the knowledge you need, and that is enough. It will have to be enough.",
+        "",
+        "You thank them for sharing their goblinoid wisdom as you make your way back to town."],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-convince": {
@@ -73,13 +87,11 @@
         "goto_node": "id-gobden-nofriend-convince-or-fight"
     },
     "id-gobden-nofriend-convince-or-fight": {
-        "intro_text": ["","What do you do?"],
-        "prompt_text": "(Talk or Fight)",
+        "prompt_text": "What do you do? (Talk or Fight)",
         "parse_input": ["talk", "fight"],
         "talk": "id-gobden-nofriend-talk",
         "fight": "id-gobden-nofriend-fight"
     },
-
     "id-gobden-nofriend-talk": {
         "prompt_text": "Roll to convince the goblins to help you.",
         "roll_dice" : [1, 20, 15],
@@ -88,10 +100,27 @@
         "roll_failure": "id-gobden-nofriend-talk-failure"
     },
     "id-gobden-nofriend-talk-success": {
-        "goto_node": "id-gobden-friendly-convince-success"
+        "intro_text": ["The crowd is restless. The goblins think of themselves as a vast force, even in the face of the dragon.",
+        "They covet their past that the dragon has stolen from them. They can be easily persuaded.",
+        "",
+        "You barge into the chamber, standing tall yet unarmed, for you have not come to fight.",
+        "You tell them of the glory that stands before them, to reclaim their home and to slay the dragon in a fell swoop.",
+        "You tell them of great evils that humans and goblins united to drive back. This is one of those evils.",
+        "The goblins are electric, their leaders cannot stop their fury as they charge towards the dragon's cave.",
+        "To their death.",
+        "",
+        "As they prepare for glory, the goblins tell you their secret, the dragon's weakness.",
+        "The dragon has a missing scale on the left side of its neck, a single weak point.",
+        "A single well placed attack would kill the dragon. It may be possible after all..."],
+        "item_pickup": ["goblin-help", "goblin-done"],
+        "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-talk-failure": {
-        "intro_text": ["You leave The Goblin Den unable to secure thier help, and have learned no new information about the Dragon."],
+        "intro_text": ["The crowd is restless. The goblins think of themselves as a vast force, even in the face of the dragon.",
+        "They covet their past that the dragon has stolen from them. They can be easily persuaded.",
+        "",
+        "But first you must prove your metal to the monsters. You leap onto the dias and kill their chieftain.",
+        "This does not have the effect you imagined it to. The goblins kill you."],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-fight": {
@@ -100,23 +129,45 @@
         "check_failure": "id-gobden-nofriend-fight-nosupplies"
     },
     "id-gobden-nofriend-fight-supplies": {
+        "prompt_text": "Roll to determine the outcome.",
         "roll_dice" : [1, 20, 15],
         "roll_stats": [["strength", 5]],
-        "roll_success": "id-gobden-nofriend-fight-win",
+        "roll_success": "id-gobden-nofriend-fight-win-supplies",
         "roll_failure": "id-gobden-nofriend-fight-lose"
     },
     "id-gobden-nofriend-fight-nosupplies": {
+        "prompt_text": "Roll to determine the outcome.",
         "roll_dice" : [1, 20, 5],
         "roll_stats": [["strength", 5]],
-        "roll_success": "id-gobden-nofriend-fight-win",
+        "roll_success": "id-gobden-nofriend-fight-win-no-supplies",
         "roll_failure": "id-gobden-nofriend-fight-lose"
     },
-    "id-gobden-nofriend-fight-win": {
-        "intro_text": ["The Den is clear. You defeat the goblins, and return to town."],
+    "id-gobden-nofriend-fight-win-no-supplies": {
+        "intro_text": ["What are goblins but short, flawed humans? Even human is a stretch. No, they are merely overgrown tubers.",
+        "They are green, they range from 4 to 5 feet in height, and are said to grow from out of the ground.",
+        "Vegetables, is the word that rings into your mind as you begin to chop your foes.",
+        "",
+        "First, you reach the dias and turn the chieftain to batons. Then the carrots come to you.",
+        "Chop, Dice, Mince. The first three are dealt with.",
+        "Each turnip moves slower than the last and moves with less confidence.",
+        "Easier to slice. Your body moves in a desperate dance.",
+        "You raise your blade. Thrust, parry, chop, lunge, dice, and chiffonade.",
+        "Your vision fails you. Until at last, it is done.",
+        "You will return to town empty handed and covered in vegetable oil."],
+        "item_pickup": ["goblin-done"],
+        "goto_node": "id-town-return"
+    },
+    "id-gobden-nofriend-fight-win-supplies": {
+        "intro_text": ["You trap the cavern exits with a selection of spikes, pits, and springs. A well aimed arrow is all you need.",
+        "You light the arrow, bring back your bow, and with a thrum, the arrow sails into a far away barrel.",
+        "The cavern floods with burning alcohol, bringing many goblins with the bitter wave.",
+        "It is done. You will return to town empty handed and smelling faintly of burning beer."],
         "item_pickup": ["goblin-done"],
         "goto_node": "id-town-return"
     },
     "id-gobden-nofriend-fight-lose": {
+        "intro_text": ["Unfortunately, your plans took far too long to formulate. A goblin scout warns of your invasion.",
+                       "The goblins are upon you, and you are dead."],
         "goto_node" : "id-game-end"
     }
 }
