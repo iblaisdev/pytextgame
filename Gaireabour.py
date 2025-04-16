@@ -238,7 +238,7 @@ class State:
         if self.debug_objects == False:
             Util.clear_console()
 
-        Util.print_slow('Welcome to the wonderful world of Gaireabour! Before you start your adventure, let me ask you who you are.\n\n', False)
+        Util.print_slow('\nWelcome to the wonderful world of Gaireabour! Before you start your adventure, let me ask you who you are.\n\n', False)
         Util.print_slow('Are you a Wandering Cavalier, questing across the realm and smiting evil in the search of glory, wealth, fame, or perhaps all of the above? If so, type "Knight”\n\n', False)
         Util.print_slow('Are you a Traveling Scholar? If so, type “Wizard”\n\n', False)
         Util.print_slow('Are you a Lone Brigand? If so, type “Rogue”\n\n', False)
