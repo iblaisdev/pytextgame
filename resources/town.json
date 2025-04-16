@@ -93,8 +93,8 @@
 	},
 	"id-town-choice-yesmap" :
     {
-		"intro_text" : ["You are reminded of the map to the ‘stick lady' you got from the goblins.",
-						"It's not far from the town, but you have a feeling that this ‘stick lady' is a witch, and not a harmless one.",
+		"intro_text" : ["You are reminded of the map to the 'stick lady' you got from the goblins.",
+						"It's not far from the town, but you have a feeling that this 'stick lady' is a witch, and not a harmless one.",
 						"",
 						"Where shall you travel?"],
 		"prompt_text": "The Crypt\nThe Goblin Den\nThe Witch Hut\nThe Dragon's Den",
