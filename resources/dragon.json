@@ -196,7 +196,14 @@
     },
 
     "id-dragon-playerattack-missed": {
-        "intro_text": ["Your attack misses the mark! The dragon prepares its next attack."],
+        "intro_text": ["You struggle to find purchase against the stoney scales.",
+                       "Your blade clatters as the dragon writhes its body, and the dragon throws you off.",
+                       "You missed your chance.",
+                       "",
+                       "You land in a pile of bones and gold while scrambling to recover your sword.",
+                       "It would take a minor miracle to survive another onslaught.",
+                       "And here it comes...",
+        ],
         "goto_node": "id-dragon-attack-one-breath"
     },
     "id-dragon-kill": {
