@@ -239,9 +239,9 @@ class State:
             Util.clear_console()
 
         Util.print_slow('\nWelcome to the wonderful world of Gaireabour! Before you start your adventure, let me ask you who you are.\n\n', False)
-        Util.print_slow('Are you a Wandering Cavalier, questing across the realm and smiting evil in the search of glory, wealth, fame, or perhaps all of the above? If so, type "Knight”\n\n', False)
-        Util.print_slow('Are you a Traveling Scholar? If so, type “Wizard”\n\n', False)
-        Util.print_slow('Are you a Lone Brigand? If so, type “Rogue”\n\n', False)
+        Util.print_slow('Are you a Wandering Cavalier, questing across the realm?\nWho is adept in the art of combat, yet clumsy in the art of persuasion?\nIf so, type "Knight”\n\n', False)
+        Util.print_slow('Are you a Traveling Scholar, an academic who scours the land of its knowledge?\nWho wields magical foresight and power, yet is weak in combat?\nIf so, type “Wizard”\n\n', False)
+        Util.print_slow('Are you a Lone Brigand, an outlaw who seeks gold and jewels above all else?\nWho is skilled in the art of deception and subterfuge?\nIf so, type “Rogue”\n\n', False)
 
         while True:
             for arch in self.player.archetypes: # print list of classes
