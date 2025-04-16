@@ -97,19 +97,19 @@ class State:
 
     def load_game_data(self):
         self.gamedata = {} # {"id-game-start" : {"prompt_text": "(Run or pass)","parse_input": ["run", "pass"], "run" : "id-forest-start", "pass" : "id-forest-blah"}}
-        with open('resources/game.json') as json_file:
+        with open('./resources/game.json') as json_file:
             self.gamedata = json.load(json_file)
-        with open('resources/forest.json') as json_file:
+        with open('./resources/forest.json') as json_file:
             self.gamedata.update(json.load(json_file))
-        with open('resources/town.json') as json_file:
+        with open('./resources/town.json') as json_file:
             self.gamedata.update(json.load(json_file))
-        with open('resources/gobden.json') as json_file:
+        with open('./resources/gobden.json') as json_file:
             self.gamedata.update(json.load(json_file))
-        with open('resources/crypt.json') as json_file:
+        with open('./resources/crypt.json') as json_file:
             self.gamedata.update(json.load(json_file))
-        with open('resources/witch.json') as json_file:
+        with open('./resources/witch.json') as json_file:
             self.gamedata.update(json.load(json_file))
-        with open('resources/dragon.json') as json_file:
+        with open('./resources/dragon.json') as json_file:
             self.gamedata.update(json.load(json_file))
         if self.debug_objects == True:
             print(self.gamedata) #dump full game dictionary
