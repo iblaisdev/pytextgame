@@ -148,6 +148,7 @@ class State:
             return 'roll_failure'
 
     def process_input(self, prompt_text: str, allowed_actions, loop_until_true: bool):
+        allowed_actions.append('restart');
         while True:
             user_entered_txt = input("\n" + prompt_text + "\n\n>>> ")
             clean_input = self.__sanitize_input(user_entered_txt)
@@ -218,9 +219,7 @@ class State:
             Util.print_speed = speed
             return "settingschange"
         if "restart" in txt:
-            state.stateid = 'id-game-restart'
-            Util.print_speed = Util.print_speed_default
-            return "settingschange"
+            return "restart"
         if "debugobj" in txt:
             self.set_debug_objects(True)
             return "settingschange"
@@ -401,18 +400,6 @@ while True:
             if action_key == 'restart':
                 state.stateid = 'id-game-restart'
                 Util.print_speed = Util.print_speed_default
-            elif action_key == 'faster':
-                speed = max(0.00, Util.print_speed - 0.01)
-                print(f"ok, new speed: {speed}")
-                Util.print_speed = speed
-            elif action_key == 'slower':
-                speed = min(Util.print_speed_default + 0.01, Util.print_speed + 0.01)
-                print(f"ok, new speed: {speed}")
-                Util.print_speed = speed
-            elif action_key == 'fastest':
-                speed = 0.00
-                print(f"ok, new speed: {speed}")
-                Util.print_speed = speed
             else:
                 state.stateid = node[action_key]
 
