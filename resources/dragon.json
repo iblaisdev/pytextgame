@@ -12,10 +12,7 @@
     },
     "id-dragon-enter": {
         "prompt_text": "Do you turn back? (Yes or No)",
-        "parse_input": [
-            "yes",
-            "no"
-        ],
+        "parse_input": ["yes", "no"],
         "yes": "id-dragon-backtotown",
         "no": "id-dragon-gobcheck"
     },
@@ -70,10 +67,9 @@
     },
     "id-dragon-weak-point-text": {
         "goto_node": "id-dragon-attack-intro",
-        "intro_text": [
-            "",
-            "Importantly, the missing scale is as reported. It's only a hand's length from the left corner of the dragon's mouth.",
-            "It just might be possible..."]
+        "intro_text": ["",
+                       "Importantly, the missing scale is as reported. It's only a hand's length from the left corner of the dragon's mouth.",
+                       "It just might be possible..."]
     },
     "id-dragon-attack-intro": {
         "goto_node": "id-dragon-attack-one-breath",
@@ -269,5 +265,4 @@
         "check_success": "id-dragon-drink-potion",
         "check_failure": "id-game-end"
     }
-
 }
