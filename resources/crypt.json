@@ -10,10 +10,7 @@
     },
     "id-crypt-enter": {
         "prompt_text": "What do you do? (Enter or Leave)",
-        "parse_input": [
-            "enter",
-            "leave"
-        ],
+        "parse_input": ["enter", "leave"],
         "enter": "id-crypt-sword",
         "leave": "id-crypt-leave"
     },
