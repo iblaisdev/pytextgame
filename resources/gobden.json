@@ -23,7 +23,7 @@
     },
     "id-gobden-friend-check": {
         "intro_text": ["You duck through the entrance of the goblin hollow and slowly make your way to your demi-human audience.",
-        ""],
+                       ""],
         "inventory_check": ["goblin-friend"],
         "check_success": "id-gobden-notify-friend",
         "check_failure": "id-gobden-nofriend-convince"
