@@ -1,25 +1,44 @@
 {
     "id-witch-start": {
-        "intro_text": ["You see a witch, sitting in a tree."],
-        "goto_node": "id-witch-potion"
+        "intro_text": [
+        "The witch hut sits on an island in a large pond at the southern edge of the forest. ",
+        "A rickety, wooden bridge leads to the hut. Fireflies dart around lily pads on the pond below you.",
+        "A strange steam pours out of the witch hut, illuminated by an unnatural green light that emanates from the hut."],
+        "goto_node": "id-witch-enter"
     },
-    "id-witch-potion": {
-        "intro_text": ["She asks you a riddle"],
-        "prompt_text": "Roll to determine your wit.",
-        "roll_dice": [1, 20, 15],
-        "roll_stats": [["wisdom", 10]],
-        "item_pickup": ["witch-done"],
+    "id-witch-enter": {
+        "prompt_text": "Roll to check if the front door is unlocked.",
+        "roll_dice": [1, 20, 0],
+        "roll_success": "id-witch-enter-success",
+        "roll_failure": "id-witch-enter-success"
+    },
+    "id-witch-enter-success": {
+        "intro_text": ["The hut is lined with jars of animal organs and limbs that sit on knotted wooden shelves.",
+        "At the center of the hut a cast iron pot boils with foul smelling brew. ",
+        "Behind the pot and steam, a figure speaks...",
+        "",
+        "... You... you wish to slay the dragon...",
+        "",
+        "She offers you a deal.",
+        "",
+        "... give me something... and I will give you power...",
+        "... give me the color of your eyes... and I will give you the power...",
+        "... to kill the dragon."],
+        "prompt_text": "Do you accept the witches offer? (Yes or No)",
+        "parse_input": ["yes", "no"],
+        "yes": "id-witch-yesdeal",
+        "no": "id-witch-nodeal"
+    },
+    "id-witch-yesdeal": {
+        "intro_text": ["You agree, and a gnarled hand gives you the potion of vitality.",
+        "Was the forest always so drab? It doesn't matter."],
+        "item_pickup": ["vitality-potion", "witch-done"],
         "item_remove": ["stick-lady-map"],
-        "roll_success": "id-witch-potion-success",
-        "roll_failure": "id-witch-potion-fail"
+        "goto_node": "id-town-return"
     },
-    "id-witch-potion-success": {
-        "goto_node": "id-town-return",
-        "intro_text": ["You sucessfully decifer her riddle."],
-        "item_pickup": ["vitality-potion"]
-    },
-    "id-witch-potion-fail": {
-        "intro_text": ["You stare at the witch, dumbfounded."],
+    "id-witch-nodeal": {
+        "intro_text": ["Your eye color? No, you think, better not trust a witch. ",
+                        "Though, if you change your mind, she will always be here."],
         "goto_node": "id-town-return"
     }
 }
